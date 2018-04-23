@@ -17,7 +17,7 @@ class SavingsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create saving" do
     assert_difference('Saving.count') do
-      post savings_url, params: { saving: { amount: @saving.amount, name: @saving.name, recurring: @saving.recurring, type: @saving.type } }
+      post savings_url, params: { saving: { amount: @saving.amount, name: @saving.name, recurring: @saving.recurring, category: @saving.category } }
     end
 
     assert_redirected_to saving_url(Saving.last)
@@ -34,7 +34,7 @@ class SavingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update saving" do
-    patch saving_url(@saving), params: { saving: { amount: @saving.amount, name: @saving.name, recurring: @saving.recurring, type: @saving.type } }
+    patch saving_url(@saving), params: { saving: { amount: @saving.amount, name: @saving.name, recurring: @saving.recurring, category: @saving.category } }
     assert_redirected_to saving_url(@saving)
   end
 

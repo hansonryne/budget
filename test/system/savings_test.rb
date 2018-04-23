@@ -17,7 +17,7 @@ class SavingsTest < ApplicationSystemTestCase
     fill_in "Amount", with: @saving.amount
     fill_in "Name", with: @saving.name
     fill_in "Recurring", with: @saving.recurring
-    fill_in "Type", with: @saving.type
+    fill_in "Category", with: @saving.category
     click_on "Create Saving"
 
     assert_text "Saving was successfully created"
@@ -31,7 +31,7 @@ class SavingsTest < ApplicationSystemTestCase
     fill_in "Amount", with: @saving.amount
     fill_in "Name", with: @saving.name
     fill_in "Recurring", with: @saving.recurring
-    fill_in "Type", with: @saving.type
+    fill_in "Category", with: @saving.category
     click_on "Update Saving"
 
     assert_text "Saving was successfully updated"

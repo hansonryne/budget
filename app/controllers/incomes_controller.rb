@@ -69,6 +69,6 @@ class IncomesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def income_params
-      params.require(:income).permit(:source, :pay_date, :gross_amount, :start_date, :end_date, :recurring, :federal_tax, :state_tax, :social_sec_tax, :medicare_tax, :net_amount)
+      params.require(:income).permit(:source, :pay_date, :gross_amount, :start_date, :end_date, :recurring, :federal_tax, :state_tax, :social_sec_tax, :medicare_tax, :net_amount, :annual_budget_id)
     end
 end

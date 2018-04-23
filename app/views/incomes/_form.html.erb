@@ -12,8 +12,13 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :annual_budget_id %>
+    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
+  </div>
+
+  <div class="field">
     <%= form.label :source %>
-    <%= form.text_area :source %>
+    <%= form.text_field :source %>
   </div>
 
   <div class="field">

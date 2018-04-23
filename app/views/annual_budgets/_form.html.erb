@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :year %>
-    <%= form.date_select :year, {order: [:year], prompt: { year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year + 1 }, {required: true} %>
+    <%= form.select :year, Date.today.year..Date.today.year.next %>
   </div>
 
   <div class="actions">

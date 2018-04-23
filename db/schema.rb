@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_23_030739) do
+ActiveRecord::Schema.define(version: 2018_04_23_140312) do
 
   create_table "annual_budgets", force: :cascade do |t|
     t.text "name"
@@ -22,12 +22,14 @@ ActiveRecord::Schema.define(version: 2018_04_23_030739) do
   create_table "bills", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
-    t.date "withdrawal_data"
+    t.date "withdrawal_date"
     t.integer "amount"
     t.text "name"
     t.boolean "recurring"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "annual_budget_id"
+    t.index ["annual_budget_id"], name: "index_bills_on_annual_budget_id"
   end
 
   create_table "incomes", force: :cascade do |t|
@@ -44,15 +46,19 @@ ActiveRecord::Schema.define(version: 2018_04_23_030739) do
     t.integer "net_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "annual_budget_id"
+    t.index ["annual_budget_id"], name: "index_incomes_on_annual_budget_id"
   end
 
   create_table "savings", force: :cascade do |t|
-    t.text "type"
+    t.text "category"
     t.integer "amount"
     t.text "name"
     t.boolean "recurring"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "annual_budget_id"
+    t.index ["annual_budget_id"], name: "index_savings_on_annual_budget_id"
   end
 
 end

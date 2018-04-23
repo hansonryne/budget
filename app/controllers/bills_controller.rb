@@ -24,6 +24,7 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.json
   def create
+    # render plain: params[:bill].inspect
     @bill = Bill.new(bill_params)
 
     respond_to do |format|
@@ -69,6 +70,6 @@ class BillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_params
-      params.require(:bill).permit(:start_date, :end_date, :withdrawal_data, :amount, :name, :recurring)
+      params.require(:bill).permit(:start_date, :end_date, :withdrawal_date, :amount, :name, :recurring, :annual_budget_id)
     end
 end

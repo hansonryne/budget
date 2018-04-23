@@ -17,7 +17,7 @@ class BillsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create bill" do
     assert_difference('Bill.count') do
-      post bills_url, params: { bill: { amount: @bill.amount, end_date: @bill.end_date, name: @bill.name, recurring: @bill.recurring, start_date: @bill.start_date, withdrawal_data: @bill.withdrawal_data } }
+      post bills_url, params: { bill: { amount: @bill.amount, end_date: @bill.end_date, name: @bill.name, recurring: @bill.recurring, start_date: @bill.start_date, withdrawal_date: @bill.withdrawal_date } }
     end
 
     assert_redirected_to bill_url(Bill.last)
@@ -34,7 +34,7 @@ class BillsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update bill" do
-    patch bill_url(@bill), params: { bill: { amount: @bill.amount, end_date: @bill.end_date, name: @bill.name, recurring: @bill.recurring, start_date: @bill.start_date, withdrawal_data: @bill.withdrawal_data } }
+    patch bill_url(@bill), params: { bill: { amount: @bill.amount, end_date: @bill.end_date, name: @bill.name, recurring: @bill.recurring, start_date: @bill.start_date, withdrawal_date: @bill.withdrawal_date } }
     assert_redirected_to bill_url(@bill)
   end
 

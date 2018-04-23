@@ -10,6 +10,10 @@ class AnnualBudgetsController < ApplicationController
   # GET /annual_budgets/1
   # GET /annual_budgets/1.json
   def show
+    @bills = Bill.where(annual_budget_id: @annual_budget.id)
+    @incomes = Income.where(annual_budget_id: @annual_budget.id)
+    @savings = Saving.where(annual_budget_id: @annual_budget.id)
+    @items = [@incomes, @bills, @savings]
   end
 
   # GET /annual_budgets/new
@@ -25,6 +29,7 @@ class AnnualBudgetsController < ApplicationController
   # POST /annual_budgets.json
   def create
     @annual_budget = AnnualBudget.new(annual_budget_params)
+    # render plain: params[:annual_budget].inspect
 
     respond_to do |format|
       if @annual_budget.save

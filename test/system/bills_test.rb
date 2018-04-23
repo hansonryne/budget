@@ -19,7 +19,7 @@ class BillsTest < ApplicationSystemTestCase
     fill_in "Name", with: @bill.name
     fill_in "Recurring", with: @bill.recurring
     fill_in "Start Date", with: @bill.start_date
-    fill_in "Withdrawal Data", with: @bill.withdrawal_data
+    fill_in "Withdrawal Data", with: @bill.withdrawal_date
     click_on "Create Bill"
 
     assert_text "Bill was successfully created"
@@ -35,7 +35,7 @@ class BillsTest < ApplicationSystemTestCase
     fill_in "Name", with: @bill.name
     fill_in "Recurring", with: @bill.recurring
     fill_in "Start Date", with: @bill.start_date
-    fill_in "Withdrawal Data", with: @bill.withdrawal_data
+    fill_in "Withdrawal Data", with: @bill.withdrawal_date
     click_on "Update Bill"
 
     assert_text "Bill was successfully updated"
