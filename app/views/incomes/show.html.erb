@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @income.source %>
+</p>
+
+<p>
+  <strong>Pay date:</strong>
+  <%= @income.pay_date %>
+</p>
+
+<p>
+  <strong>Gross amount:</strong>
+  <%= @income.gross_amount %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @income.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @income.end_date %>
+</p>
+
+<p>
+  <strong>Recurring:</strong>
+  <%= @income.recurring %>
+</p>
+
+<p>
+  <strong>Federal tax:</strong>
+  <%= @income.federal_tax %>
+</p>
+
+<p>
+  <strong>State tax:</strong>
+  <%= @income.state_tax %>
+</p>
+
+<p>
+  <strong>Social sec tax:</strong>
+  <%= @income.social_sec_tax %>
+</p>
+
+<p>
+  <strong>Medicare tax:</strong>
+  <%= @income.medicare_tax %>
+</p>
+
+<p>
+  <strong>Net amount:</strong>
+  <%= @income.net_amount %>
+</p>
+
+<%= link_to 'Edit', edit_income_path(@income) %> |
+<%= link_to 'Back', incomes_path %>

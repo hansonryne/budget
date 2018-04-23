@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  source: MyText
+  pay_date: 2018-04-22
+  gross_amount: 1
+  start_date: 2018-04-22
+  end_date: 2018-04-22
+  recurring: false
+  federal_tax: 1
+  state_tax: 1
+  social_sec_tax: 1
+  medicare_tax: 1
+  net_amount: 1
+
+two:
+  source: MyText
+  pay_date: 2018-04-22
+  gross_amount: 1
+  start_date: 2018-04-22
+  end_date: 2018-04-22
+  recurring: false
+  federal_tax: 1
+  state_tax: 1
+  social_sec_tax: 1
+  medicare_tax: 1
+  net_amount: 1

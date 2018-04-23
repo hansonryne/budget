@@ -1,0 +1,72 @@
+<%= form_with(model: income, local: true) do |form| %>
+  <% if income.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(income.errors.count, "error") %> prohibited this income from being saved:</h2>
+
+      <ul>
+      <% income.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :source %>
+    <%= form.text_area :source %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pay_date %>
+    <%= form.date_select :pay_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gross_amount %>
+    <%= form.number_field :gross_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recurring %>
+    <%= form.check_box :recurring %>
+  </div>
+
+  <div class="field">
+    <%= form.label :federal_tax %>
+    <%= form.number_field :federal_tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_tax %>
+    <%= form.number_field :state_tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :social_sec_tax %>
+    <%= form.number_field :social_sec_tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :medicare_tax %>
+    <%= form.number_field :medicare_tax %>
+  </div>
+
+  <div class="field">
+    <%= form.label :net_amount %>
+    <%= form.number_field :net_amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

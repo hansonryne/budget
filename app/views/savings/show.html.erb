@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @saving.type %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @saving.amount %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @saving.name %>
+</p>
+
+<p>
+  <strong>Recurring:</strong>
+  <%= @saving.recurring %>
+</p>
+
+<%= link_to 'Edit', edit_saving_path(@saving) %> |
+<%= link_to 'Back', savings_path %>

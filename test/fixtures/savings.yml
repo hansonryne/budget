@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: MyText
+  amount: 1
+  name: MyText
+  recurring: false
+
+two:
+  type: MyText
+  amount: 1
+  name: MyText
+  recurring: false
