@@ -10,6 +10,9 @@ class MonthsController < ApplicationController
   # GET /months/1
   # GET /months/1.json
   def show
+    @bills = Bill.where(month_id: @month.id)
+    @incomes = Income.where(month_id: @month.id)
+    @savings = Saving.where(month_id: @month.id)
   end
 
   # GET /months/new
@@ -62,13 +65,14 @@ class MonthsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
-    def set_month
-      @month = Month.find(params[:id])
-    end
+  def set_month
+    @month = Month.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def month_params
-      params.require(:month).permit(:name)
-    end
+  def month_params
+    params.require(:month).permit(:identity, :annual_budget_id)
+  end
 end

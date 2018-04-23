@@ -2,8 +2,13 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @month.name %>
+  <%= MONTHHASH.key(@month.identity.month) %>
 </p>
+
+<% @incomes.each do |i| %>
+  <%= i.source %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_month_path(@month) %> |
 <%= link_to 'Back', months_path %>

@@ -13,7 +13,6 @@ class AnnualBudgetsController < ApplicationController
     @bills = Bill.where(annual_budget_id: @annual_budget.id)
     @incomes = Income.where(annual_budget_id: @annual_budget.id)
     @savings = Saving.where(annual_budget_id: @annual_budget.id)
-    @items = [@incomes, @bills, @savings]
   end
 
   # GET /annual_budgets/new

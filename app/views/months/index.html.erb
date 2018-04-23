@@ -13,7 +13,7 @@
   <tbody>
     <% @months.each do |month| %>
       <tr>
-        <td><%= month.name %></td>
+        <td><%= "#{MONTHHASH.key(month.identity.month)} #{month.identity.year}" %></td>
         <td><%= link_to 'Show', month %></td>
         <td><%= link_to 'Edit', edit_month_path(month) %></td>
         <td><%= link_to 'Destroy', month, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,5 +1,6 @@
 class Income < ApplicationRecord
   belongs_to :annual_budget
+  belongs_to :month
   validates :source, :end_date, :start_date, :pay_date, :gross_amount,
             :federal_tax, :state_tax, :use_month,
             :social_sec_tax, :medicare_tax, presence: true
@@ -9,7 +10,7 @@ class Income < ApplicationRecord
 
 
   def set_net_income
-    self.net_amount = '%.2f' % (self.gross_amount - self.federal_tax - self.state_tax - self.medicare_tax - self.social_sec_tax)
+    self.net_amount = '%.2f' % (gross_amount - federal_tax - state_tax - medicare_tax - social_sec_tax)
   end
 end
 
