@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Annual Budgets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @annual_budgets.each do |annual_budget| %>
+      <tr>
+        <td><%= annual_budget.name %></td>
+        <td><%= annual_budget.year %></td>
+        <td><%= link_to 'Show', annual_budget %></td>
+        <td><%= link_to 'Edit', edit_annual_budget_path(annual_budget) %></td>
+        <td><%= link_to 'Destroy', annual_budget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Annual Budget', new_annual_budget_path %>

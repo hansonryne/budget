@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @annual_budget.name %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @annual_budget.year %>
+</p>
+
+<%= link_to 'Edit', edit_annual_budget_path(@annual_budget) %> |
+<%= link_to 'Back', annual_budgets_path %>

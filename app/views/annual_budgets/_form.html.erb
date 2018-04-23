@@ -1,0 +1,27 @@
+<%= form_with(model: annual_budget, local: true) do |form| %>
+  <% if annual_budget.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(annual_budget.errors.count, "error") %> prohibited this annual_budget from being saved:</h2>
+
+      <ul>
+      <% annual_budget.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.date_select :year, {order: [:year], prompt: { year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year + 1 }, {required: true} %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
