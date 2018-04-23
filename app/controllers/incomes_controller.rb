@@ -5,6 +5,7 @@ class IncomesController < ApplicationController
   # GET /incomes.json
   def index
     @incomes = Income.all
+
   end
 
   # GET /incomes/1
@@ -63,12 +64,12 @@ class IncomesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_income
-      @income = Income.find(params[:id])
-    end
+  def set_income 
+    @income = Income.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def income_params
-      params.require(:income).permit(:source, :pay_date, :gross_amount, :start_date, :end_date, :recurring, :federal_tax, :state_tax, :social_sec_tax, :medicare_tax, :net_amount, :annual_budget_id)
-    end
+  def income_params
+    params.require(:income).permit(:source, :pay_date, :gross_amount, :use_month, :start_date, :end_date, :recurring, :federal_tax, :state_tax, :social_sec_tax, :medicare_tax, :net_amount, :annual_budget_id)
+  end
 end

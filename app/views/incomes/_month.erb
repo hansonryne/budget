@@ -1,0 +1,7 @@
+<% MONTHHASH.each do |name, month_value| %>
+  <h3>
+    <%= name %>
+  </h3>
+  <%= render 'layouts/income', this_month_value: month_value %>
+
+<% end %>

@@ -13,7 +13,7 @@
 <table>
   <thead>
   <tr>
-    <th>Incomes</th>
+    <th>REMOVE THIS</th>
     <th>Bills</th>
     <th>Savings</th>
   </tr>
@@ -22,9 +22,7 @@
   <tbody>
     <tr>
       <td>
-        <% @incomes.each do |income| %>
-          <%= income.source %> <br>
-        <% end %>
+        <%= render 'incomes/month', incomes: @incomes %>
       </td>
       <td>
         <% @bills.each do |bill| %>

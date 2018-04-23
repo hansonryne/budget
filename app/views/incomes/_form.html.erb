@@ -27,8 +27,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :use_month %>
+    <%= form.date_select :use_month %>
+  </div>
+
+  <div class="field">
     <%= form.label :gross_amount %>
-    <%= form.number_field :gross_amount %>
+    <%= form.number_field :gross_amount, :step => 0.01 %>
   </div>
 
   <div class="field">
@@ -48,27 +53,22 @@
 
   <div class="field">
     <%= form.label :federal_tax %>
-    <%= form.number_field :federal_tax %>
+    <%= form.number_field :federal_tax, :step => 0.01 %>
   </div>
 
   <div class="field">
     <%= form.label :state_tax %>
-    <%= form.number_field :state_tax %>
+    <%= form.number_field :state_tax, :step => 0.01 %>
   </div>
 
   <div class="field">
     <%= form.label :social_sec_tax %>
-    <%= form.number_field :social_sec_tax %>
+    <%= form.number_field :social_sec_tax, :step => 0.01 %>
   </div>
 
   <div class="field">
     <%= form.label :medicare_tax %>
-    <%= form.number_field :medicare_tax %>
-  </div>
-
-  <div class="field">
-    <%= form.label :net_amount %>
-    <%= form.number_field :net_amount %>
+    <%= form.number_field :medicare_tax, :step => 0.01 %>
   </div>
 
   <div class="actions">

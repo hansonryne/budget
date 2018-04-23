@@ -1,0 +1,63 @@
+<table>
+  <thead>
+  <tr>
+    <th>Incomes</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+  <tbody>
+  <tr>
+    <th>Source</th>
+    <th>Pay Date</th>
+    <th>Use Month</th>
+    <th>Gross Amount</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Recurring</th>
+    <th>Federal Tax</th>
+    <th>State Tax</th>
+    <th>Social Security Tax</th>
+    <th>Medicare Tax</th>
+    <th>Net Amount</th>
+    <th>Percent of Net Pay</th>
+    <th colspan="3"></th>
+  </tr>
+  <% @incomes.each do |income| %>
+  <% if income.use_month.month == this_month_value %>
+    <tr>
+      <td><%= income.source %></td>
+      <td><%= income.pay_date %></td>
+      <td><%= MONTHHASH.key(income.use_month.month) %></td>
+      <td><%= '%.2f' % income.gross_amount %></td>
+      <td><%= income.start_date %></td>
+      <td><%= income.end_date %></td>
+      <td><%= income.recurring %></td>
+      <td><%= '%.2f' % income.federal_tax %></td>
+      <td><%= '%.2f' % income.state_tax %></td>
+      <td><%= '%.2f' % income.social_sec_tax %></td>
+      <td><%= '%.2f' % income.medicare_tax %></td>
+      <td><%= '%.2f' % income.net_amount %></td>
+      <td><%= ((income.net_amount.to_f / @incomes.sum(&:net_amount)) * 100).round %></td>
+      <td><%= link_to 'Show', income %></td>
+      <td><%= link_to 'Edit', edit_income_path(income) %></td>
+      <td><%= link_to 'Destroy', income, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+  <% end %>
+  <% end %>
+  <tr style="font-weight: bold">
+    <td>TOTAL:</td>
+    <td></td>
+    <td><%= '%.2f' % @incomes.sum(&:gross_amount) %></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%= '%.2f' % @incomes.sum(&:federal_tax) %></td>
+    <td><%= '%.2f' % @incomes.sum(&:state_tax) %></td>
+    <td><%= '%.2f' % @incomes.sum(&:social_sec_tax) %></td>
+    <td><%= '%.2f' % @incomes.sum(&:medicare_tax) %></td>
+    <td><%= '%.2f' % @incomes.sum(&:net_amount) %></td>
+  </tr>
+  </tbody>
+</table>

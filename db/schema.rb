@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_23_140312) do
+ActiveRecord::Schema.define(version: 2018_04_23_183505) do
 
   create_table "annual_budgets", force: :cascade do |t|
     t.text "name"
@@ -35,19 +35,26 @@ ActiveRecord::Schema.define(version: 2018_04_23_140312) do
   create_table "incomes", force: :cascade do |t|
     t.text "source"
     t.date "pay_date"
-    t.integer "gross_amount"
+    t.float "gross_amount"
     t.date "start_date"
     t.date "end_date"
     t.boolean "recurring"
-    t.integer "federal_tax"
-    t.integer "state_tax"
-    t.integer "social_sec_tax"
-    t.integer "medicare_tax"
-    t.integer "net_amount"
+    t.float "federal_tax"
+    t.float "state_tax"
+    t.float "social_sec_tax"
+    t.float "medicare_tax"
+    t.float "net_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "annual_budget_id"
+    t.date "use_month"
     t.index ["annual_budget_id"], name: "index_incomes_on_annual_budget_id"
+  end
+
+  create_table "months", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "savings", force: :cascade do |t|

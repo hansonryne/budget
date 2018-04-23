@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :months
   resources :savings
   resources :incomes
   resources :bills
