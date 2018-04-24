@@ -62,6 +62,12 @@ class IncomesController < ApplicationController
     end
   end
 
+  def clone
+    income = Income.find(params[:id])
+    @income = income.dup
+    render 'new'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
   def set_income 

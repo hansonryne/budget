@@ -16,11 +16,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :month_id %>
-    <%= form.collection_select(:month_id, Month.all, :id, :normal_name) %>
-  </div>
-
-  <div class="field">
     <%= form.label :start_date %>
     <%= form.date_select :start_date, discard_day: true %>
   </div>

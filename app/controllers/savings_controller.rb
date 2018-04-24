@@ -61,6 +61,12 @@ class SavingsController < ApplicationController
     end
   end
 
+  def clone
+    saving = Saving.find(params[:id])
+    @saving = saving.dup
+    render 'new'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_saving

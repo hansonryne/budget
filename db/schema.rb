@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_151321) do
+ActiveRecord::Schema.define(version: 2018_04_24_164443) do
 
   create_table "annual_budgets", force: :cascade do |t|
     t.text "name"
@@ -29,9 +29,7 @@ ActiveRecord::Schema.define(version: 2018_04_24_151321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "annual_budget_id"
-    t.integer "month_id"
     t.index ["annual_budget_id"], name: "index_bills_on_annual_budget_id"
-    t.index ["month_id"], name: "index_bills_on_month_id"
   end
 
   create_table "incomes", force: :cascade do |t|
@@ -50,17 +48,7 @@ ActiveRecord::Schema.define(version: 2018_04_24_151321) do
     t.datetime "updated_at", null: false
     t.integer "annual_budget_id"
     t.date "use_month"
-    t.integer "month_id"
     t.index ["annual_budget_id"], name: "index_incomes_on_annual_budget_id"
-    t.index ["month_id"], name: "index_incomes_on_month_id"
-  end
-
-  create_table "months", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "annual_budget_id"
-    t.date "identity"
-    t.index ["annual_budget_id"], name: "index_months_on_annual_budget_id"
   end
 
   create_table "savings", force: :cascade do |t|
@@ -71,10 +59,8 @@ ActiveRecord::Schema.define(version: 2018_04_24_151321) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "annual_budget_id"
-    t.integer "month_id"
     t.date "save_date"
     t.index ["annual_budget_id"], name: "index_savings_on_annual_budget_id"
-    t.index ["month_id"], name: "index_savings_on_month_id"
   end
 
 end
