@@ -25,6 +25,7 @@
   <%= @saving.save_date %>
 </p>
 
+<%= link_to 'Show Budget', annual_budget_path(@saving.annual_budget_id) %> |
 <%= link_to 'Edit', edit_saving_path(@saving) %> |
 <%= link_to 'Clone', clone_saving_path(@saving) %> |
 <%= link_to 'Back', savings_path %>

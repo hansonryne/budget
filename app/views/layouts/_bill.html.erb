@@ -12,11 +12,8 @@
   <% else %>
     <tr>
       <th>Name</th>
-      <th>Pay Date</th>
+      <th>Date</th>
       <th>Amount</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Recurring</th>
       <th>Percentage</th>
       <th colspan="3"></th>
     </tr>
@@ -25,9 +22,6 @@
         <td><%= bill.name %></td>
         <td><%= bill.withdrawal_date %></td>
         <td><%= '%.2f' % bill.amount %></td>
-        <td><%= bill.start_date %></td>
-        <td><%= bill.end_date %></td>
-        <td><%= bill.recurring %></td>
         <td><%= ((bill.amount.to_f / @bills.where(withdrawal_date: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:amount)) * 100).round %></td>
         <td><%= link_to 'Show', bill %></td>
         <td><%= link_to 'Edit', edit_bill_path(bill) %></td>

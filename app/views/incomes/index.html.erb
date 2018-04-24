@@ -17,7 +17,7 @@
     <th>Social Security Tax</th>
     <th>Medicare Tax</th>
     <th>Net Amount</th>
-    <th colspan="3"></th>
+    <th colspan="4"></th>
   </tr>
   </thead>
 
@@ -36,6 +36,7 @@
         <td><%= '%.2f' % income.social_sec_tax %></td>
         <td><%= '%.2f' % income.medicare_tax %></td>
         <td><%= '%.2f' % income.net_amount %></td>
+        <td><%= link_to 'Go to Budget', annual_budget_path(income.annual_budget_id) %></td>
         <td><%= link_to 'Show', income %></td>
         <td><%= link_to 'Edit', edit_income_path(income) %></td>
         <td><%= link_to 'Destroy', income, method: :delete, data: {confirm: 'Are you sure?'} %></td>

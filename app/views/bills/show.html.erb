@@ -30,6 +30,7 @@
   <%= @bill.recurring %>
 </p>
 
+<%= link_to 'Show Budget', annual_budget_path(@bill.annual_budget_id) %> |
 <%= link_to 'Edit', edit_bill_path(@bill) %> |
 <%= link_to 'Clone', clone_bill_path(@bill) %> |
 <%= link_to 'Back', bills_path %>

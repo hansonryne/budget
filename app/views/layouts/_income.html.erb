@@ -14,16 +14,13 @@
       <th>Source</th>
       <th>Pay Date</th>
       <th>Use Month</th>
-      <th>Gross Amount</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Recurring</th>
+      <th>Gross</th>
       <th>Federal Tax</th>
       <th>State Tax</th>
       <th>Social Security Tax</th>
       <th>Medicare Tax</th>
-      <th>Net Amount</th>
-      <th>Percent of Net Pay</th>
+      <th>Net</th>
+      <th>Percent of Net</th>
       <th colspan="3"></th>
     </tr>
     <% @incomes.where(use_month: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).each do |income| %>
@@ -32,9 +29,6 @@
         <td><%= income.pay_date %></td>
         <td><%= MONTHHASH.key(income.use_month.month) %></td>
         <td><%= '%.2f' % income.gross_amount %></td>
-        <td><%= income.start_date %></td>
-        <td><%= income.end_date %></td>
-        <td><%= income.recurring %></td>
         <td><%= '%.2f' % income.federal_tax %></td>
         <td><%= '%.2f' % income.state_tax %></td>
         <td><%= '%.2f' % income.social_sec_tax %></td>
@@ -51,9 +45,6 @@
       <td></td>
       <td></td>
       <td><%= '%.2f' % @incomes.where(use_month: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:gross_amount) %></td>
-      <td></td>
-      <td></td>
-      <td></td>
       <td><%= '%.2f' % @incomes.where(use_month: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:federal_tax) %></td>
       <td><%= '%.2f' % @incomes.where(use_month: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:state_tax) %></td>
       <td><%= '%.2f' % @incomes.where(use_month: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:social_sec_tax) %></td>
