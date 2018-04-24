@@ -12,43 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :annual_budget_id %>
-    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
-  </div>
-
-  <div class="field">
     <%= form.label :source %>
     <%= form.text_field :source %>
   </div>
 
   <div class="field">
     <%= form.label :pay_date %>
-    <%= form.date_select :pay_date %>
+    <%= form.date_select :pay_date, order: [:day, :month, :year ] %>
   </div>
 
   <div class="field">
     <%= form.label :use_month %>
-    <%= form.date_select :use_month %>
+    <%= form.date_select :use_month, order: [ :month, :year ] %>
   </div>
 
   <div class="field">
     <%= form.label :gross_amount %>
     <%= form.number_field :gross_amount, :step => 0.01 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :recurring %>
-    <%= form.check_box :recurring %>
   </div>
 
   <div class="field">
@@ -69,6 +49,26 @@
   <div class="field">
     <%= form.label :medicare_tax %>
     <%= form.number_field :medicare_tax, :step => 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, order: [:day, :month, :year ] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date, order: [:day, :month, :year ] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recurring %>
+    <%= form.check_box :recurring %>
+  </div>
+
+  <div class="field">
+    <%= form.label :annual_budget_id %>
+    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
   </div>
 
   <div class="actions">

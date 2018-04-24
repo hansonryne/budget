@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @saving.category %>
+  <strong>Name:</strong>
+  <%= @saving.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @saving.save_date %>
 </p>
 
 <p>
@@ -11,8 +16,8 @@
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @saving.name %>
+  <strong>Category:</strong>
+  <%= @saving.category %>
 </p>
 
 <p>
@@ -21,8 +26,8 @@
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @saving.save_date %>
+  <strong>Attached to Budget:</strong>
+  <%= @saving.get_attached_budget_name %>
 </p>
 
 <%= link_to 'Show Budget', annual_budget_path(@saving.annual_budget_id) %> |

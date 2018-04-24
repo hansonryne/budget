@@ -11,23 +11,8 @@
 </p>
 
 <p>
-  <strong>Gross amount:</strong>
+  <strong>Gross:</strong>
   <%= '%.2f' % @income.gross_amount %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @income.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @income.end_date %>
-</p>
-
-<p>
-  <strong>Recurring:</strong>
-  <%= @income.recurring %>
 </p>
 
 <p>
@@ -51,8 +36,13 @@
 </p>
 
 <p>
-  <strong>Net amount:</strong>
+  <strong>Net:</strong>
   <%= '%.2f' % @income.net_amount %>
+</p>
+
+<p>
+  <strong>Attached to Budget:</strong>
+  <%= @income.get_attached_budget_name %>
 </p>
 
 <%= link_to 'Show Budget', annual_budget_path(@income.annual_budget_id) %>

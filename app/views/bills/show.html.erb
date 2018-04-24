@@ -1,6 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Name:</strong>
+  <%= @bill.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @bill.amount %>
+</p>
+
+<p>
+  <strong>Withdrawal date:</strong>
+  <%= @bill.withdrawal_date %>
+</p>
+
+<p>
   <strong>Start date:</strong>
   <%= @bill.start_date %>
 </p>
@@ -11,23 +26,13 @@
 </p>
 
 <p>
-  <strong>Withdrawal data:</strong>
-  <%= @bill.withdrawal_date %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @bill.amount %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @bill.name %>
-</p>
-
-<p>
   <strong>Recurring:</strong>
   <%= @bill.recurring %>
+</p>
+
+<p>
+  <strong>Attached Budget:</strong>
+  <%= @bill.get_attached_budget_name %>
 </p>
 
 <%= link_to 'Show Budget', annual_budget_path(@bill.annual_budget_id) %> |

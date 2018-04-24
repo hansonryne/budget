@@ -10,24 +10,10 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.label :annual_budget_id %>
-    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
-  </div>
 
   <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date, discard_day: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date, discard_day: true %>
-  </div>
-
-  <div class="field">
-    <%= form.label :withdrawal_date %>
-    <%= form.date_select :withdrawal_date %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="field">
@@ -36,13 +22,28 @@
   </div>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date, order: [ :month, :year ] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date, order: [ :month, :year ] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :withdrawal_date %>
+    <%= form.date_select :withdrawal_date, order: [ :day, :month, :year ] %>
   </div>
 
   <div class="field">
     <%= form.label :recurring %>
     <%= form.check_box :recurring %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'Attach to budget:' %>
+    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
   </div>
 
   <div class="actions">

@@ -34,7 +34,11 @@
         <td><%= '%.2f' % income.social_sec_tax %></td>
         <td><%= '%.2f' % income.medicare_tax %></td>
         <td><%= '%.2f' % income.net_amount %></td>
-        <td><%= ((income.net_amount.to_f / @incomes.where(use_month: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:net_amount)) * 100).round %></td>
+        <% if income.net_amount == 0 %>
+          <td>0</td>
+        <% else %>
+          <td><%= ((income.net_amount.to_f / @incomes.where(use_month: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:net_amount)) * 100).round %></td>
+        <% end %>
         <td><%= link_to 'Show', income %></td>
         <td><%= link_to 'Edit', edit_income_path(income) %></td>
         <td><%= link_to 'Destroy', income, method: :delete, data: {confirm: 'Are you sure?'} %></td>

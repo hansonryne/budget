@@ -5,20 +5,22 @@
 <table>
   <thead>
     <tr>
-      <th>Type</th>
-      <th>Amount</th>
       <th>Name</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Type</th>
       <th>Recurring</th>
       <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @savings.each do |saving| %>
+    <% @savings.order(:save_date).each do |saving| %>
       <tr>
-        <td><%= saving.category %></td>
-        <td><%= saving.amount %></td>
         <td><%= saving.name %></td>
+        <td><%= saving.save_date %></td>
+        <td><%= saving.amount %></td>
+        <td><%= saving.category %></td>
         <td><%= saving.recurring %></td>
         <td><%= link_to 'Go to Budget', annual_budget_path(saving.annual_budget_id) %></td>
         <td><%= link_to 'Show', saving %></td>

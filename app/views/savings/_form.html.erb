@@ -12,18 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :annual_budget_id %>
-    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select :category, options_for_select(Saving::CATEGORIES) %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
   </div>
 
   <div class="field">
     <%= form.label :save_date %>
-    <%= form.date_select :save_date %>
+    <%= form.date_select :save_date, order: [ :day, :month, :year ] %>
   </div>
 
   <div class="field">
@@ -32,13 +27,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :category %>
+    <%= form.select :category, options_for_select(Saving::CATEGORIES) %>
   </div>
 
   <div class="field">
     <%= form.label :recurring %>
     <%= form.check_box :recurring %>
+  </div>
+
+  <div class="field">
+    <%= form.label :annual_budget_id %>
+    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
   </div>
 
   <div class="actions">

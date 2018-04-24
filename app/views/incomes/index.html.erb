@@ -22,11 +22,11 @@
   </thead>
 
   <tbody>
-         <% @incomes.each do |income| %>
+         <% @incomes.order(:use_month, :source).each do |income| %>
       <tr>
         <td><%= income.source %></td>
         <td><%= income.pay_date %></td>
-        <td><%= income.use_month %></td>
+        <td><%= MONTHHASH.key(income.use_month.month) %></td>
         <td><%= '%.2f' % income.gross_amount %></td>
         <td><%= income.start_date %></td>
         <td><%= income.end_date %></td>
