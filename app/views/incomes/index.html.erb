@@ -1,5 +1,49 @@
 <p id="notice"><%= notice %></p>
 
-<%= render 'incomes/month' %>
+<h1>Incomes</h1>
 
-<%= link_to 'New Income', new_income_path %>
+<table>
+  <thead>
+  <tr>
+    <th>Source</th>
+    <th>Pay Date</th>
+    <th>Use Month</th>
+    <th>Gross Amount</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Recurring</th>
+    <th>Federal Tax</th>
+    <th>State Tax</th>
+    <th>Social Security Tax</th>
+    <th>Medicare Tax</th>
+    <th>Net Amount</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+         <% @incomes.each do |income| %>
+      <tr>
+        <td><%= income.source %></td>
+        <td><%= income.pay_date %></td>
+        <td><%= income.use_month %></td>
+        <td><%= '%.2f' % income.gross_amount %></td>
+        <td><%= income.start_date %></td>
+        <td><%= income.end_date %></td>
+        <td><%= income.recurring %></td>
+        <td><%= '%.2f' % income.federal_tax %></td>
+        <td><%= '%.2f' % income.state_tax %></td>
+        <td><%= '%.2f' % income.social_sec_tax %></td>
+        <td><%= '%.2f' % income.medicare_tax %></td>
+        <td><%= '%.2f' % income.net_amount %></td>
+        <td><%= link_to 'Show', income %></td>
+        <td><%= link_to 'Edit', edit_income_path(income) %></td>
+        <td><%= link_to 'Destroy', income, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bill', new_bill_path %>

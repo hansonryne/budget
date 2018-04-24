@@ -10,42 +10,23 @@
   <%= @annual_budget.year %>
 </p>
 
-<table>
-  <thead>
-  <tr>
-    <th>Incomes</th>
-    <th>Bills</th>
-    <th>Savings</th>
-  </tr>
-  </thead>
+  <% MONTHHASH.keys.each do |month| %>
+  <h2><%= month %></h2>
 
-  <tbody>
-    <tr>
-      <td>
-        <%= render 'layouts/income' %>
-      </td>
-      <td>
-        <% @incomes.each do |income| %>
-          <%= income.source %> <br>
-        <% end %>
-      </td>
-      <td>
-        <% @bills.each do |bill| %>
-          <%= bill.name %> <br>
-        <% end %>
-      </td>
-      <td>
-        <% @savings.each do |saving| %>
-          <%= saving.name %> <br>
-        <% end %>
-      </td>
+  <%= render 'layouts/income', this_month: month %>
 
-    </tr>
-  </tbody>
-</table>
+  <%= render 'layouts/bill', this_month: month %>
+
+  <%= render 'layouts/saving', this_month: month %>
+
+  <%= render 'layouts/leftover', this_month: month %>
+  <hr>
+<% end %>
+
 
 <%= link_to 'Edit', edit_annual_budget_path(@annual_budget) %> |
 <%= link_to 'Back', annual_budgets_path %> |
 <%= link_to 'New Income', new_income_path %> |
 <%= link_to 'New Bill', new_bill_path %> |
 <%= link_to 'New Saving', new_saving_path %>
+

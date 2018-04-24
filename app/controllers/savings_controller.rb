@@ -69,6 +69,6 @@ class SavingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def saving_params
-      params.require(:saving).permit(:category, :amount, :name, :recurring, :annual_budget_id, :month_id)
+      params.require(:saving).permit(:category, :amount, :name, :recurring, :save_date, :annual_budget_id, :month_id)
     end
 end
