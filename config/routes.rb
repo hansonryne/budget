@@ -15,6 +15,8 @@ end
   resources :bills do
     member do
       get 'clone'
+      post 'distribute'
+      patch 'add_single_month'
     end
   end
   resources :annual_budgets do

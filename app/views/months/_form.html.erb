@@ -21,7 +21,7 @@
 
       <div class="field">
         <%= form.label :annual_budget_id %>
-          <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
+          <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name_as_name_year) %>
       </div>
 
       <div class="actions">

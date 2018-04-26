@@ -1,5 +1,5 @@
 class BillsController < ApplicationController
-  before_action :set_bill, only: [:show, :edit, :update, :destroy]
+  before_action :set_bill, only: [:show, :edit, :update, :destroy, :distribute, :add_single_month]
 
   # GET /bills
   # GET /bills.json
@@ -66,6 +66,17 @@ class BillsController < ApplicationController
     bill = Bill.find(params[:id])
     @bill = bill.dup
     render 'new'
+  end
+
+  def distribute
+    @bill.distribute_across_months
+    render 'show'
+  end
+
+  def add_single_month
+    # render plain: params[:bill].inspect
+    @bill.add_month(Month.find(params[:bill][:month_ids]))
+    render 'show'
   end
 
   private

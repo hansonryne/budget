@@ -1,5 +1,5 @@
 class AnnualBudgetsController < ApplicationController
-  before_action :set_annual_budget, only: [:show, :edit, :update, :destroy]
+  before_action :set_annual_budget, only: [:show, :edit, :update, :destroy, :make_months]
 
   # GET /annual_budgets
   # GET /annual_budgets.json
@@ -32,6 +32,7 @@ class AnnualBudgetsController < ApplicationController
 
     respond_to do |format|
       if @annual_budget.save
+        @annual_budget.generate_months
         format.html { redirect_to @annual_budget, notice: 'Annual budget was successfully created.' }
         format.json { render :show, status: :created, location: @annual_budget }
       else

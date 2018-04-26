@@ -16,24 +16,45 @@
 </p>
 
 <p>
-  <strong>Start date:</strong>
-  <%= @bill.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @bill.end_date %>
-</p>
-
-<p>
-  <strong>Recurring:</strong>
-  <%= @bill.recurring %>
-</p>
-
-<p>
   <strong>Attached Budget:</strong>
   <%= @bill.get_attached_budget_name %>
 </p>
+
+<p>
+  <strong>Attached Months:</strong>
+  <% @bill.months.each do |m| %>
+    <%= m.name_as_month_year %>
+  <% end %>
+</p>
+<% if @bill.months.length <= 12 %>
+<%= form_with(model: @bill, local: true, url: { action: 'add_single_month' }) do |form| %>
+  <% if @bill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+
+      <ul>
+        <% @bill.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="field">
+  <%= form.label 'Attach to month:' %>
+  <%= form.collection_select(:month_ids, Month.where(annual_budget_id: @bill.annual_budget_id), :id, :name_as_month_year) %>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<% end %>
+
+<% if @bill.months.length < 12 %>
+  <p>OR:</p>
+  <%= button_to('Add to all months in attached budget', action: 'distribute') %>
+<% end %>
 
 <%= link_to 'Show Budget', annual_budget_path(@bill.annual_budget_id) %> |
 <%= link_to 'Edit', edit_bill_path(@bill) %> |

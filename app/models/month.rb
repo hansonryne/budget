@@ -6,7 +6,7 @@ class Month < ApplicationRecord
   has_many :incomes, :through => :attachments, :source => :attachable, :source_type => 'Income'
   has_many :savings, :through => :attachments, :source => :attachable, :source_type => 'Saving'
   
-  validates :name, uniqueness: true
+  validates :name, uniqueness: { scope: :annual_budget_id }
   
   def month_name_only_as_symbol
     self.name.strftime("%B").to_sym

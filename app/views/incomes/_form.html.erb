@@ -21,12 +21,12 @@
 
       <div class="field">
         <%= form.label :pay_date %>
-          <%= form.date_select :pay_date, order: [:day, :month, :year ] %>
+          <%= form.date_select :pay_date, :discard_year => true %>
       </div>
 
       <div class="field">
         <%= form.label :use_month %>
-          <%= form.date_select :use_month, order: [ :month, :year ] %>
+          <%= form.date_select :use_month, :discard_year => true, :discard_day => true %>
       </div>
 
       <div class="field">
@@ -55,29 +55,18 @@
       </div>
 
       <div class="field">
-        <%= form.label :start_date %>
-          <%= form.date_select :start_date, order: [:day, :month, :year ] %>
-      </div>
-
-      <div class="field">
-        <%= form.label :end_date %>
-          <%= form.date_select :end_date, order: [:day, :month, :year ] %>
-      </div>
-
-      <div class="field">
-        <%= form.label :recurring %>
-          <%= form.check_box :recurring %>
-      </div>
-
-      <div class="field">
         <%= form.label :annual_budget_id %>
-          <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
+          <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name_as_name_year) %>
       </div>
 
       <div class="field">
-        <%= form.label 'Attach to months:' %>
-          <%= form.collection_check_boxes(:month_ids, Month.all, :id, :name) %>
+        <% if @income.annual_budget_id.nil? %>
+          </div>
+          <% else %>
+        <%= form.label 'Attach to month:' %>
+          <%= form.collection_select(:month_ids, income.available_months, :id, :name_as_month_year) %>
       </div>
+          <% end %>
 
       <div class="actions">
         <%= form.submit %>

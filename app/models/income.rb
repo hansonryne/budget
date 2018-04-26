@@ -4,7 +4,7 @@ class Income < ApplicationRecord
   has_many :attachments, :as => :attachable, dependent: :destroy
   has_many :months, :through => :attachments
   
-  validates :source, :end_date, :start_date, :pay_date, :gross_amount,
+  validates :source, :pay_date, :gross_amount,
             :federal_tax, :state_tax, :use_month,
             :social_sec_tax, :medicare_tax, presence: true
 
@@ -14,6 +14,10 @@ class Income < ApplicationRecord
 
   def set_net_income
     self.net_amount = '%.2f' % (gross_amount - federal_tax - state_tax - medicare_tax - social_sec_tax)
+  end
+
+  def available_months
+      AnnualBudget.find(annual_budget_id).months
   end
 end
 

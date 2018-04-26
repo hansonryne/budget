@@ -45,6 +45,13 @@
   <%= @income.get_attached_budget_name %>
 </p>
 
+<p>
+  <strong>Attached to Month:</strong>
+  <% @income.months.each do |m| %>
+    <%= m.name_as_month_year %>
+  <% end %>
+</p>
+
 <%= link_to 'Show Budget', annual_budget_path(@income.annual_budget_id) %>
 <%= link_to 'Edit', edit_income_path(@income) %> |
 <%= link_to 'Clone', clone_income_path(@income) %>
