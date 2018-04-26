@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :months
   resources :savings do
   member do
     get 'clone'

@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_164443) do
+ActiveRecord::Schema.define(version: 2018_04_25_221949) do
 
   create_table "annual_budgets", force: :cascade do |t|
     t.text "name"
     t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "attachments", force: :cascade do |t|
+    t.integer "month_id"
+    t.integer "attachable_id"
+    t.string "attachable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,6 +57,12 @@ ActiveRecord::Schema.define(version: 2018_04_24_164443) do
     t.integer "annual_budget_id"
     t.date "use_month"
     t.index ["annual_budget_id"], name: "index_incomes_on_annual_budget_id"
+  end
+
+  create_table "months", force: :cascade do |t|
+    t.date "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "savings", force: :cascade do |t|
