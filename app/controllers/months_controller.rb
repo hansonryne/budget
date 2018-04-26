@@ -69,6 +69,6 @@ class MonthsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def month_params
-      params.require(:month).permit(:name)
+      params.require(:month).permit(:name, :annual_budget_id)
     end
 end

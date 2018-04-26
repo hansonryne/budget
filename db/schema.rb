@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_25_221949) do
+ActiveRecord::Schema.define(version: 2018_04_26_014845) do
 
   create_table "annual_budgets", force: :cascade do |t|
     t.text "name"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2018_04_25_221949) do
     t.date "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "annual_budget_id"
+    t.index ["annual_budget_id"], name: "index_months_on_annual_budget_id"
   end
 
   create_table "savings", force: :cascade do |t|

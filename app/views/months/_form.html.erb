@@ -1,22 +1,30 @@
 <%= form_with(model: month, local: true) do |form| %>
   <% if month.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(month.errors.count, "error") %> prohibited this month from being saved:</h2>
+      <h2>
+        <%= pluralize(month.errors.count, "error") %> prohibited this month from being saved:</h2>
 
       <ul>
-      <% month.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% month.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+          <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.date_select :name %>
-  </div>
+      <div class="field">
+        <%= form.label :name %>
+          <%= form.date_select :name, discard_day: true, order: [:month, :year] %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+      <div class="field">
+        <%= form.label :annual_budget_id %>
+          <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+      <% end %>

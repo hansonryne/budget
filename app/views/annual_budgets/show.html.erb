@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<p id="notice">
+  <%= notice %>
+</p>
 
 <p>
   <strong>Name:</strong>
@@ -10,23 +12,17 @@
   <%= @annual_budget.year %>
 </p>
 
-  <% MONTHHASH.keys.each do |month| %>
-  <h2><%= month %></h2>
+<p>
 
-  <%= render 'layouts/income', this_month: month %>
+  <%= render 'layouts/income' %>
 
-  <%= render 'layouts/bill', this_month: month %>
+  <%= render 'layouts/bill' %>
 
-  <%= render 'layouts/saving', this_month: month %>
 
-  <%= render 'layouts/leftover', this_month: month %>
-  <hr>
-<% end %>
-
+</p>
 
 <%= link_to 'Edit', edit_annual_budget_path(@annual_budget) %> |
-<%= link_to 'Back', annual_budgets_path %> |
-<%= link_to 'New Income', new_income_path %> |
-<%= link_to 'New Bill', new_bill_path %> |
-<%= link_to 'New Saving', new_saving_path %>
-
+  <%= link_to 'Back', annual_budgets_path %> |
+    <%= link_to 'New Income', new_income_path %> |
+      <%= link_to 'New Bill', new_bill_path %> |
+        <%= link_to 'New Saving', new_saving_path %>

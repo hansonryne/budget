@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-    <% @months.each do |month| %>
+    <% @months.order(:name).each do |month| %>
       <tr>
         <td><%= month.name %></td>
         <td><%= link_to 'Show', month %></td>

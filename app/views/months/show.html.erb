@@ -1,15 +1,29 @@
-<p id="notice"><%= notice %></p>
+<p id="notice">
+  <%= notice %>
+</p>
 
 <p>
   <strong>Name:</strong>
   <%= @month.name %>
 </p>
 
-<p>
+<p>Incomes:
+  <% @month.incomes.each do |m| %>
+    <%= m.source %>: <%= m.net_amount %>
+      <% end %>
+</p>
+
+<p>Bills:
+  <% @month.bills.each do |m| %>
+    <%= m.name %>
+      <% end %>
+</p>
+
+<p>Savings:
   <% @month.savings.each do |m| %>
-  <%= m.name %>
-  <% end %>
+    <%= m.name %>
+      <% end %>
 </p>
 
 <%= link_to 'Edit', edit_month_path(@month) %> |
-<%= link_to 'Back', months_path %>
+  <%= link_to 'Back', months_path %>

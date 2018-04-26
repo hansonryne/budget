@@ -1,7 +1,7 @@
 class Income < ApplicationRecord
   belongs_to :annual_budget
   
-  has_many :attachments, :as => :attachable
+  has_many :attachments, :as => :attachable, dependent: :destroy
   has_many :months, :through => :attachments
   
   validates :source, :end_date, :start_date, :pay_date, :gross_amount,

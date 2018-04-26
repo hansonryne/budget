@@ -1,42 +1,67 @@
 <table>
+      <% @annual_budget.months.order(:name).each do |month| %>
   <thead>
-  <tr>
-    <th>Bills</th>
-  </tr>
+    <tr>
+      <th>
+        <h2>
+          <%= month.month_name_only_as_symbol %></th>
+        </h2>
+      </th>
+    </tr>
   </thead>
   <tbody>
-  <% if @bills.where(withdrawal_date: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).length == 0 %>
-    <tr>
-      <td><strong>No Bills This Month</strong></td>
-    </tr>
-  <% else %>
+<tr>
+      <td>
+        <h3>
+          Bills:
+        </h3>
+      </td>
+</tr>
     <tr>
       <th>Name</th>
-      <th>Date</th>
+      <th>Day</th>
       <th>Amount</th>
       <th>Percentage</th>
       <th colspan="3"></th>
     </tr>
-    <% @bills.where(withdrawal_date: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).order(:name).reverse_order.each do |bill| %>
-      <tr>
-        <td><%= bill.name %></td>
-        <td><%= bill.withdrawal_date %></td>
-        <td><%= '%.2f' % bill.amount %></td>
-        <td><%= ((bill.amount.to_f / @bills.where(withdrawal_date: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:amount)) * 100).round %></td>
-        <td><%= link_to 'Show', bill %></td>
-        <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      </tr>
-    <% end %>
-    <tr>
-      <td>TOTAL:</td>
-      <td></td>
-      <td><%= '%.2f' % @bills.where(withdrawal_date: Date.new(@annual_budget.year, MONTHHASH[this_month], 1)..Date.new(@annual_budget.year, MONTHHASH[this_month], -1)).sum(&:amount) %></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  <% end %>
-    </tbody>
-  </table>
+
+    <% month.bills.order(:name).each do |bill| %>
+        <tr>
+          <td>
+            <%= bill.name %> <%= bill.id %>
+          </td>
+          <td>
+            <%= bill.withdrawal_date.day %>
+          </td>
+          <td>
+            <%= '%.2f' % bill.amount %>
+          </td>
+          <td>
+            <%= (bill.amount.to_f / month.bills.sum(&:amount) * 100).round(2) %> %
+          </td>
+          <td>
+            <%= link_to 'Show', bill %>
+          </td>
+          <td>
+            <%= link_to 'Edit', edit_bill_path(bill) %>
+          </td>
+          <td>
+            <%= link_to 'Destroy', bill, method: :delete, data: {confirm: 'Are you sure?'} %>
+          </td>
+          
+        </tr>
+        <% end %>
+            <tr>
+              <td>TOTAL:</td>
+              <td></td>
+              <td>
+                <%= '%.2f' % month.bills.sum(&:amount) %>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+  </tbody>
+          <% end %>
+</table>

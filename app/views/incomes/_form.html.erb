@@ -1,77 +1,85 @@
 <%= form_with(model: income, local: true) do |form| %>
   <% if income.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(income.errors.count, "error") %> prohibited this income from being saved:</h2>
+      <h2>
+        <%= pluralize(income.errors.count, "error") %> prohibited this income from being saved:</h2>
 
       <ul>
-      <% income.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% income.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+          <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :source %>
-    <%= form.text_field :source %>
-  </div>
+      <div class="field">
+        <%= form.label :source %>
+          <%= form.text_field :source %>
+      </div>
 
-  <div class="field">
-    <%= form.label :pay_date %>
-    <%= form.date_select :pay_date, order: [:day, :month, :year ] %>
-  </div>
+      <div class="field">
+        <%= form.label :pay_date %>
+          <%= form.date_select :pay_date, order: [:day, :month, :year ] %>
+      </div>
 
-  <div class="field">
-    <%= form.label :use_month %>
-    <%= form.date_select :use_month, order: [ :month, :year ] %>
-  </div>
+      <div class="field">
+        <%= form.label :use_month %>
+          <%= form.date_select :use_month, order: [ :month, :year ] %>
+      </div>
 
-  <div class="field">
-    <%= form.label :gross_amount %>
-    <%= form.number_field :gross_amount, :step => 0.01 %>
-  </div>
+      <div class="field">
+        <%= form.label :gross_amount %>
+          <%= form.number_field :gross_amount, :step => 0.01 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :federal_tax %>
-    <%= form.number_field :federal_tax, :step => 0.01 %>
-  </div>
+      <div class="field">
+        <%= form.label :federal_tax %>
+          <%= form.number_field :federal_tax, :step => 0.01 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :state_tax %>
-    <%= form.number_field :state_tax, :step => 0.01 %>
-  </div>
+      <div class="field">
+        <%= form.label :state_tax %>
+          <%= form.number_field :state_tax, :step => 0.01 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :social_sec_tax %>
-    <%= form.number_field :social_sec_tax, :step => 0.01 %>
-  </div>
+      <div class="field">
+        <%= form.label :social_sec_tax %>
+          <%= form.number_field :social_sec_tax, :step => 0.01 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :medicare_tax %>
-    <%= form.number_field :medicare_tax, :step => 0.01 %>
-  </div>
+      <div class="field">
+        <%= form.label :medicare_tax %>
+          <%= form.number_field :medicare_tax, :step => 0.01 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.date_select :start_date, order: [:day, :month, :year ] %>
-  </div>
+      <div class="field">
+        <%= form.label :start_date %>
+          <%= form.date_select :start_date, order: [:day, :month, :year ] %>
+      </div>
 
-  <div class="field">
-    <%= form.label :end_date %>
-    <%= form.date_select :end_date, order: [:day, :month, :year ] %>
-  </div>
+      <div class="field">
+        <%= form.label :end_date %>
+          <%= form.date_select :end_date, order: [:day, :month, :year ] %>
+      </div>
 
-  <div class="field">
-    <%= form.label :recurring %>
-    <%= form.check_box :recurring %>
-  </div>
+      <div class="field">
+        <%= form.label :recurring %>
+          <%= form.check_box :recurring %>
+      </div>
 
-  <div class="field">
-    <%= form.label :annual_budget_id %>
-    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
-  </div>
+      <div class="field">
+        <%= form.label :annual_budget_id %>
+          <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+      <div class="field">
+        <%= form.label 'Attach to months:' %>
+          <%= form.collection_check_boxes(:month_ids, Month.all, :id, :name) %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+      <% end %>

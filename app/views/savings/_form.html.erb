@@ -1,47 +1,55 @@
 <%= form_with(model: saving, local: true) do |form| %>
   <% if saving.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(saving.errors.count, "error") %> prohibited this saving from being saved:</h2>
+      <h2>
+        <%= pluralize(saving.errors.count, "error") %> prohibited this saving from being saved:</h2>
 
       <ul>
-      <% saving.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% saving.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+          <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+      <div class="field">
+        <%= form.label :name %>
+          <%= form.text_field :name %>
+      </div>
 
-  <div class="field">
-    <%= form.label :save_date %>
-    <%= form.date_select :save_date, order: [ :day, :month, :year ] %>
-  </div>
+      <div class="field">
+        <%= form.label :save_date %>
+          <%= form.date_select :save_date, order: [ :day, :month, :year ] %>
+      </div>
 
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.number_field :amount %>
-  </div>
+      <div class="field">
+        <%= form.label :amount %>
+          <%= form.number_field :amount %>
+      </div>
 
-  <div class="field">
-    <%= form.label :category %>
-    <%= form.select :category, options_for_select(Saving::CATEGORIES) %>
-  </div>
+      <div class="field">
+        <%= form.label :category %>
+          <%= form.select :category, options_for_select(Saving::CATEGORIES) %>
+      </div>
 
-  <div class="field">
-    <%= form.label :recurring %>
-    <%= form.check_box :recurring %>
-  </div>
+      <div class="field">
+        <%= form.label :recurring %>
+          <%= form.check_box :recurring %>
+      </div>
 
-  <div class="field">
-    <%= form.label :annual_budget_id %>
-    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
-  </div>
+      <div class="field">
+        <%= form.label :annual_budget_id %>
+          <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name) %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+      <div class="field">
+        <%= form.label 'Attach to months:' %>
+          <%= form.collection_check_boxes(:month_ids, Month.all, :id, :name) %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+      <% end %>
