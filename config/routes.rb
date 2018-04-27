@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   resources :savings do
   member do
     get 'clone'
+    post 'distribute'
+    patch 'add_single_month'
   end
 end
   resources :incomes do
     member do
       get 'clone'
+      patch 'add_single_month'
     end
   end
   resources :bills do

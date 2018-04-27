@@ -59,15 +59,6 @@
           <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name_as_name_year) %>
       </div>
 
-      <div class="field">
-        <% if @income.annual_budget_id.nil? %>
-          </div>
-          <% else %>
-        <%= form.label 'Attach to month:' %>
-          <%= form.collection_select(:month_ids, income.available_months, :id, :name_as_month_year) %>
-      </div>
-          <% end %>
-
       <div class="actions">
         <%= form.submit %>
       </div>

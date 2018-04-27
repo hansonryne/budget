@@ -19,5 +19,14 @@ class Income < ApplicationRecord
   def available_months
       AnnualBudget.find(annual_budget_id).months
   end
+  
+  def add_month(month)
+    if months.include? month
+      errors[:month_ids] << "Month Already Attached"
+    else
+      months << month
+    end
+  end
+  
 end
 

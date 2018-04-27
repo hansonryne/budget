@@ -26,7 +26,6 @@
     <%= form.date_select :withdrawal_date, order: [ :day, :month, :year ] %>
   </div>
 
-
   <div class="field">
     <%= form.label 'Attach to budget:' %>
     <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name_as_name_year) %>

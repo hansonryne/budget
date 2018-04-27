@@ -46,13 +46,37 @@
 </p>
 
 <p>
-  <strong>Attached to Month:</strong>
-  <% @income.months.each do |m| %>
-    <%= m.name_as_month_year %>
+  <strong>Attached Months:</strong>
+  <% @income.months.each do |i| %>
+    <%= i.name_as_month_year %>
   <% end %>
 </p>
+<% if @income.months.length <= 12 %>
+<%= form_with(model: @income, local: true, url: { action: 'add_single_month' }) do |form| %>
+  <% if @income.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@income.errors.count, "error") %> prohibited this income from being saved:</h2>
 
-<%= link_to 'Show Budget', annual_budget_path(@income.annual_budget_id) %>
+      <ul>
+        <% @income.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="field">
+  <%= form.label 'Attach to month:' %>
+  <%= form.collection_select(:month_ids, Month.where(annual_budget_id: @income.annual_budget_id), :id, :name_as_month_year) %>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<% end %>
+
+<%= link_to 'Show Budget', annual_budget_path(@income.annual_budget_id) %> |
 <%= link_to 'Edit', edit_income_path(@income) %> |
-<%= link_to 'Clone', clone_income_path(@income) %>
+<%= link_to 'Clone', clone_income_path(@income) %> |
 <%= link_to 'Back', incomes_path %>

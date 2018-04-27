@@ -1,5 +1,5 @@
 class IncomesController < ApplicationController
-  before_action :set_income, only: [:show, :edit, :update, :destroy]
+  before_action :set_income, only: [:show, :edit, :update, :destroy, :add_single_month]
 
   # GET /incomes
   # GET /incomes.json
@@ -68,6 +68,12 @@ class IncomesController < ApplicationController
     render 'new'
   end
 
+  def add_single_month
+    # render plain: params[:bill].inspect
+    @income.add_month(Month.find(params[:income][:month_ids]))
+    redirect_to @income
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
   def set_income 
