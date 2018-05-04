@@ -10,9 +10,8 @@ class AnnualBudgetsController < ApplicationController
   # GET /annual_budgets/1
   # GET /annual_budgets/1.json
   def show
-    @bills = Bill.where(annual_budget_id: @annual_budget.id)
-    @incomes = Income.where(annual_budget_id: @annual_budget.id)
-    @savings = Saving.where(annual_budget_id: @annual_budget.id)
+    @months = Month.where(annual_budget_id: @annual_budget.id)
+    @leftovers = @annual_budget.incomes.sum(&:net_amount) - (@annual_budget.bills.sum(&:amount) + @annual_budget.savings.sum(&:amount))
   end
 
   # GET /annual_budgets/new
