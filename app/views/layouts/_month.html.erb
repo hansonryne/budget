@@ -1,11 +1,8 @@
-
-
-
 <ul class="accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
   <% @annual_budget.months.order(:name).each do |month| %>
     <li class="accordion-item" data-accordion-item>
       <!-- Accordion tab title -->
-      <a href="#" class="accordion-title"><%= month.name.strftime("%B %y") %></a>
+      <a href="#" class="accordion-title" style="background-color: lightgray; border-color: black;"><%= month.name.strftime("%B %y") %></a>
       <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
       <div class="accordion-content" data-tab-content>
         <ul class="tabs" data-tabs id="<%= month.name %>">

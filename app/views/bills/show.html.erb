@@ -26,7 +26,8 @@
     <%= m.name_as_month_year %>
   <% end %>
 </p>
-<% if @bill.months.length <= 12 %>
+
+<% if @bill.months.length < 12 %>
 <%= form_with(model: @bill, local: true, url: { action: 'add_single_month' }) do |form| %>
   <% if @bill.errors.any? %>
     <div id="error_explanation">
@@ -42,7 +43,7 @@
 
 <div class="field">
   <%= form.label 'Attach to month:' %>
-  <%= form.collection_select(:month_ids, Month.where(annual_budget_id: @bill.annual_budget_id), :id, :name_as_month_year) %>
+  <%= form.collection_select(:month_ids, Month.where(annual_budget_id: @bill.annual_budget_id) - @bill.months, :id, :name_as_month_year) %>
 </div>
 
   <div class="actions">
@@ -54,6 +55,30 @@
 <% if @bill.months.length < 12 %>
   <p>OR:</p>
   <%= button_to('Add to all months in attached budget', action: 'distribute') %>
+<% end %>
+
+<% if @bill.months.length > 0 %>
+<%= form_with(model: @bill, local:true, url: { action: 'remove_single_month' }) do |form| %>
+  <% if @bill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this month from being removed:</h2>
+      
+      <ul>
+        <% @bill.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="field">
+  <%= form.label 'Remove from month:' %>
+  <%= form.collection_select(:month_ids, @bill.months, :id, :name_as_month_year) %>
+</div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
 <% end %>
 
 <%= link_to 'Show Budget', annual_budget_path(@bill.annual_budget_id) %> |

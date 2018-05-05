@@ -1,5 +1,5 @@
 class SavingsController < ApplicationController
-  before_action :set_saving, only: [:show, :edit, :update, :destroy, :distribute, :add_single_month]
+  before_action :set_saving, only: [:show, :edit, :update, :destroy, :distribute, :add_single_month, :remove_single_month]
 
   # GET /savings
   # GET /savings.json
@@ -73,8 +73,14 @@ class SavingsController < ApplicationController
   end
 
   def add_single_month
-    # render plain: params[:bill].inspect
+    # render plain: params[:saving].inspect
     @saving.add_month(Month.find(params[:saving][:month_ids]))
+    redirect_to @saving
+  end
+  
+  def remove_single_month
+#     render plain: params[:saving].inspect
+    @saving.months.destroy(params[:saving][:month_ids])
     redirect_to @saving
   end
 

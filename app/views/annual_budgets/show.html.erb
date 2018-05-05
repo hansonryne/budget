@@ -1,16 +1,23 @@
 <p id="notice">
   <%= notice %>
 </p>
+  <div class="grid-x align-center">
+    <div class="cell">
+      <h2 style="text-align: center;">
+        <%= @annual_budget.name %> Budget
+      </h2>
+    </div>
+</div>
+<div class="grid-x align-center">
+    <div class="cell">
+      <h2 style="text-align: center;">
+        <%= @annual_budget.year %>
+      </h2>
+    </div>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @annual_budget.name %>
-</p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @annual_budget.year %>
-</p>
+
 
 <p>
   <%= render 'layouts/month' %>
