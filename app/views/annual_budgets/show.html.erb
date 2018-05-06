@@ -16,15 +16,11 @@
     </div>
   </div>
 
-
-
-
 <p>
-  <%= render 'layouts/month' %>
+  <%= render 'layouts/months' %>
 </p>
-
-<%= link_to 'Edit', edit_annual_budget_path(@annual_budget) %> |
-  <%= link_to 'Back', annual_budgets_path %> |
-    <%= link_to 'New Income', new_income_path %> |
-      <%= link_to 'New Bill', new_bill_path %> |
-        <%= link_to 'New Saving', new_saving_path %>
+<div class="grid-x" style="text-align: center;">
+  <div class="cell">
+    <%= link_to 'Edit this Budget', edit_annual_budget_path(@annual_budget), { class: "button", style: "color: white;" } %>
+  </div>
+</div>

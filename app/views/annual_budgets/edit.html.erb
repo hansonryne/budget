@@ -1,6 +1,12 @@
+<div class="grid-x align-center">
+    <div class="cell" style="text-align: center;">
 <h1>Editing Annual Budget</h1>
-
+  </div>
 <%= render 'form', annual_budget: @annual_budget %>
 
-<%= link_to 'Show', @annual_budget %> |
-<%= link_to 'Back', annual_budgets_path %>
+      <div class="cell" style="text-align: center;">
+
+<%= link_to 'Show', @annual_budget, { class: "button", style: "color: white;" } %> |
+<%= link_to 'Back', annual_budgets_path, { class: "button", style: "color: white;" } %>
+  </div>
+</div>

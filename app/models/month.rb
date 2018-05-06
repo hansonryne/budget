@@ -9,10 +9,15 @@ class Month < ApplicationRecord
   validates :name, uniqueness: { scope: :annual_budget_id }
   
   def month_name_only_as_symbol
-    self.name.strftime("%B").to_sym
+    name.strftime("%B").to_sym
   end
   
   def name_as_month_year
-    self.name.strftime("%B %y")
+    name.strftime("%B %y")
   end
+  
+  def get_leftovers
+    incomes.sum(&:net_amount) - bills.sum(&:amount) - savings.sum(&:amount)
+  end
+  
 end

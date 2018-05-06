@@ -70,7 +70,7 @@ class IncomesController < ApplicationController
 
   def add_single_month
     # render plain: params[:bill].inspect
-    @income.add_month(Month.find(params[:income][:month_ids]))
+    @income.add_month_to_item(Month.find(params[:income][:month_ids]), @income)
     redirect_to @income
   end
   

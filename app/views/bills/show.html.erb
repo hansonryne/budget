@@ -1,88 +1,107 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @bill.name %>
+<p id="notice">
+  <%= notice %>
 </p>
+<div class="grid-x align-center">
+  <div class="cell small-6" style="text-align: center;">
+    <p>
+      <strong>Name:</strong><br>
+      <%= @bill.name %>
+    </p>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @bill.amount %>
-</p>
+    <p>
+      <strong>Amount:</strong><br> $
+      <%= '%.2f' % @bill.amount %>
+    </p>
 
-<p>
-  <strong>Withdrawal date:</strong>
-  <%= @bill.withdrawal_date %>
-</p>
+    <p>
+      <strong>Withdrawal date:</strong><br>
+      <%= @bill.withdrawal_date.strftime("#{@bill.withdrawal_date.day.ordinalize}") %>
+    </p>
 
-<p>
-  <strong>Attached Budget:</strong>
-  <%= @bill.get_attached_budget_name %>
-</p>
+    <p>
+      <strong>In this Budget:</strong><br>
+      <%= link_to "#{@bill.annual_budget.name}", annual_budget_path(@bill.annual_budget_id), { class: "button", style: "color: white" } %>
+    </p>
 
-<p>
-  <strong>Attached Months:</strong>
-  <% @bill.months.each do |m| %>
-    <%= m.name_as_month_year %>
-  <% end %>
-</p>
+    <p>
+      <strong>In these Months:</strong><br>
+      <% @bill.months.each do |m| %>
+        <% if m == @bill.months.last %>
+          <%= m.name_as_month_year %>
+            <% else %>
+              <%= m.name_as_month_year %> |
+                <% end %>
+                  <% end %>
+    </p>
 
-<% if @bill.months.length < 12 %>
-<%= form_with(model: @bill, local: true, url: { action: 'add_single_month' }) do |form| %>
-  <% if @bill.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+    <hr>
 
-      <ul>
-        <% @bill.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if @bill.months.length < 12 %>
+      <%= form_with(model: @bill, local: true, url: { action: 'add_single_month' }) do |form| %>
+        <% if @bill.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
 
-<div class="field">
-  <%= form.label 'Attach to month:' %>
-  <%= form.collection_select(:month_ids, Month.where(annual_budget_id: @bill.annual_budget_id) - @bill.months, :id, :name_as_month_year) %>
-</div>
+            <ul>
+              <% @bill.errors.full_messages.each do |message| %>
+                <li>
+                  <%= message %>
+                </li>
+                <% end %>
+            </ul>
+          </div>
+          <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+            <div class="field">
+              <%= form.label 'Attach to month:' %>
+                <%= form.collection_select(:month_ids, Month.where(annual_budget_id: @bill.annual_budget_id) - @bill.months, :id, :name_as_month_year) %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit "Attach" %>
+            </div>
+            <% end %>
+              <% end %>
+
+                <% if @bill.months.length < 12 %>
+                  <p>OR:</p>
+                  <%= button_to('Add to all months in this budget', { action: 'distribute' }) %>
+                    <% end %>
+                      <hr>
+                      <% if @bill.months.length > 0 %>
+                        <%= form_with(model: @bill, local:true, url: { action: 'remove_single_month' }) do |form| %>
+                          <% if @bill.errors.any? %>
+                            <div id="error_explanation">
+                              <h2>
+                                <%= pluralize(@bill.errors.count, "error") %> prohibited this month from being removed:</h2>
+
+                              <ul>
+                                <% @bill.errors.full_messages.each do |message| %>
+                                  <li>
+                                    <%= message %>
+                                  </li>
+                                  <% end %>
+                              </ul>
+                            </div>
+                            <% end %>
+                              <div class="field">
+                                <%= form.label 'Remove from month:' %>
+                                  <%= form.collection_select(:month_ids, @bill.months, :id, :name_as_month_year) %>
+                              </div>
+
+                              <div class="actions">
+                                <%= form.submit "Remove" %>
+                              </div>
+                              <% end %>
+                                <% end %>
+  <hr>
   </div>
-<% end %>
-<% end %>
 
-<% if @bill.months.length < 12 %>
-  <p>OR:</p>
-  <%= button_to('Add to all months in attached budget', action: 'distribute') %>
-<% end %>
 
-<% if @bill.months.length > 0 %>
-<%= form_with(model: @bill, local:true, url: { action: 'remove_single_month' }) do |form| %>
-  <% if @bill.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this month from being removed:</h2>
-      
-      <ul>
-        <% @bill.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class="field">
-  <%= form.label 'Remove from month:' %>
-  <%= form.collection_select(:month_ids, @bill.months, :id, :name_as_month_year) %>
-</div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="cell" style="text-align: center;">
+    <%= link_to 'Edit', edit_bill_path(@bill), { class: "button", style: "color: white" } %> |
+      <%= link_to 'Clone', clone_bill_path(@bill), { class: "button", style: "color: white" } %> |
+        <%= link_to 'Back', bills_path, { class: "button", style: "color: white" } %>
   </div>
-<% end %>
-<% end %>
-
-<%= link_to 'Show Budget', annual_budget_path(@bill.annual_budget_id) %> |
-<%= link_to 'Edit', edit_bill_path(@bill) %> |
-<%= link_to 'Clone', clone_bill_path(@bill) %> |
-<%= link_to 'Back', bills_path %>
-
+</div>

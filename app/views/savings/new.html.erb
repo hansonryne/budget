@@ -1,5 +1,10 @@
+<div class="grid-x align-center">
+  <div class="cell" style="text-align: center;">
 <h1>New Saving</h1>
-
+  </div>
 <%= render 'form', saving: @saving %>
+  <div class="cell" style="text-align: center;">
 
-<%= link_to 'Back', savings_path %>
+<%= link_to 'Back', savings_path, { class: "button", style: "color: white;" } %>
+  </div>
+</div>

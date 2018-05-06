@@ -1,37 +1,38 @@
-<%= form_with(model: bill, local: true) do |form| %>
-  <% if bill.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+<div class="cell small-6" style="text-align: center;">
+  <%= form_with(model: bill, local: true) do |form| %>
+    <% if bill.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+        <ul>
+        <% bill.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-      <ul>
-      <% bill.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :amount %>
+      <%= form.number_field :amount %>
+    </div>
+
+    <div class="field">
+      <%= form.label :withdrawal_date %>
+      <%= form.date_select :withdrawal_date, order: [ :day, :month, :year ] %>
+    </div>
+
+    <div class="field">
+      <%= form.label 'Attach to budget:' %>
+      <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name_as_name_year) %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Update", { class: "button", style: "color: white;" } %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.number_field :amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :withdrawal_date %>
-    <%= form.date_select :withdrawal_date, order: [ :day, :month, :year ] %>
-  </div>
-
-  <div class="field">
-    <%= form.label 'Attach to budget:' %>
-    <%= form.collection_select(:annual_budget_id, AnnualBudget.all, :id, :name_as_name_year) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

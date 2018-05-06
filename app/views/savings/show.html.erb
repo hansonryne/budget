@@ -1,41 +1,39 @@
 <p id="notice"><%= notice %></p>
-
+<div class="grid-x align-center">
+  <div class="cell small-6" style="text-align: center;">
 <p>
-  <strong>Name:</strong>
+  <strong>Name:</strong><br>
   <%= @saving.name %>
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= @saving.save_date %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
+  <strong>Amount:</strong><br>
   <%= @saving.amount %>
 </p>
 
 <p>
-  <strong>Category:</strong>
+  <strong>Category:</strong><br>
   <%= @saving.category %>
 </p>
 
 <p>
-  <strong>Recurring:</strong>
-  <%= @saving.recurring %>
+  <strong>Attached to Budget:</strong><br>
+<%= link_to "#{@saving.annual_budget.name}", annual_budget_path(@saving.annual_budget_id), { class: "button", style: "color: white;" } %>
 </p>
 
 <p>
-  <strong>Attached to Budget:</strong>
-  <%= @saving.get_attached_budget_name %>
-</p>
-
-<p>
-  <strong>Attached Months:</strong>
+  <strong>Attached Months:</strong><br>
   <% @saving.months.each do |m| %>
-    <%= m.name_as_month_year %>
+  <% if m == @saving.months.last %>
+        <%= m.name_as_month_year %>
+      <% else %>
+        <%= m.name_as_month_year %> | 
+      <% end %>
   <% end %>
 </p>
+    
+    <hr>
+   
 <% if @saving.months.length < 12 %>
 <%= form_with(model: @saving, local: true, url: { action: 'add_single_month' }) do |form| %>
   <% if @saving.errors.any? %>
@@ -56,7 +54,7 @@
 </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Attach' %>
   </div>
 <% end %>
 <% end %>
@@ -66,6 +64,8 @@
   <%= button_to('Add to all months in attached budget', action: 'distribute') %>
 <% end %>
 
+    <hr>
+    
 <% if @saving.months.length > 0 %>
 <%= form_with(model: @saving, local:true, url: { action: 'remove_single_month' }) do |form| %>
   <% if @saving.errors.any? %>
@@ -85,12 +85,16 @@
 </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Remove' %>
   </div>
 <% end %>
 <% end %>
 
-<%= link_to 'Show Budget', annual_budget_path(@saving.annual_budget_id) %> |
-<%= link_to 'Edit', edit_saving_path(@saving) %> |
-<%= link_to 'Clone', clone_saving_path(@saving) %> |
-<%= link_to 'Back', savings_path %>
+    <hr>
+      <div class="cell" style="text-align: center;">
+
+<%= link_to 'Edit', edit_saving_path(@saving), { class: "button", style: "color: white;" } %> |
+<%= link_to 'Clone', clone_saving_path(@saving), { class: "button", style: "color: white;" } %> |
+<%= link_to 'Back', savings_path, { class: "button", style: "color: white;" } %>
+  </div>
+</div>

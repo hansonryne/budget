@@ -1,0 +1,64 @@
+<% if month.bills.empty? %>
+<h3>
+  No Bills For This Month
+</h3>
+<% else %>
+<div class="table-scroll grid-x align-center">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Day</th>
+      <th>Amount</th>
+      <th>Percent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% month.bills.order(:name).each do |bill| %>
+        <tr>
+          <td>
+            <%= bill.name %> <%= bill.id %>
+          </td>
+          <td>
+            <%= bill.withdrawal_date.day %>
+          </td>
+          <td>
+            <%= '%.2f' % bill.amount %>
+          </td>
+          <td>
+            <%= get_single_percentage(month, bill.amount) %>
+          </td>
+          <td>
+            <%= link_to 'Show', bill %>
+          </td>
+          <td>
+            <%= link_to 'Edit', edit_bill_path(bill) %>
+          </td>
+          <td>
+            <%= link_to 'Destroy', bill, method: :delete, data: {confirm: 'Are you sure?'} %>
+          </td>
+
+        </tr>
+        <% end %>
+            <tr>
+              <td>TOTAL:</td>
+              <td></td>
+              <td><%= '%.2f' % month.bills.sum(&:amount) %></td>
+              <td><%= get_total_percentage(month, 'bills') %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+  </tbody>
+</table>
+</div>
+<% end %>
+<div class="grid-x align-center grid-margin-x" style="text-align: center;">
+  <div class="cell small-3">
+    <%= button_to "Add A Bill", new_bill_path, {class: "button small"} %>
+  </div>
+  <div class="cell small-3">
+    <%= button_to "See All Bills`", bills_path, {class: "button small"} %>
+  </div>
+</div>

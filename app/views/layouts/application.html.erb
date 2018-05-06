@@ -10,10 +10,16 @@
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
+  <nav>
+    <%= render 'layouts/nav' %>  
+  </nav>
 
-  <body>
+  <body style="min-height: calc(100vh - 60px); padding-bottom: 60px; position: relative;">
 
     <%= yield %>
-
+    
+    <%= render 'layouts/footer' %>
   </body>
+  
+
 </html>

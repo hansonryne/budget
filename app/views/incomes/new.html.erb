@@ -1,5 +1,9 @@
-<h1>New Income</h1>
-
-<%= render 'form', income: @income %>
-
-<%= link_to 'Back', incomes_path %>
+<div class="grid-x align-center">
+  <div class="cell" style="text-align: center;">
+    <h1>New Income</h1>
+  </div>
+  <%= render 'form', income: @income %>
+    <div class="cell" style="text-align: center;">
+      <%= link_to 'Back', incomes_path %>
+    </div>
+</div>

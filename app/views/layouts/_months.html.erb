@@ -1,0 +1,41 @@
+<div class="grid-x align-center">
+  <div class="cell small-9">
+    <ul class="accordion" data-accordion data-allow-all-closed="true" data-multi-expand="true">
+      <% @annual_budget.months.order(:name).each do |month| %>
+        <li class="accordion-item" data-accordion-item>
+          <!-- Accordion tab title -->
+          <a href="#" class="accordion-title" style="background-color: lightgray; border-color: black;"><%= month.name.strftime("%B %y") %></a>
+          <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+          <div class="accordion-content" data-tab-content>
+            <ul class="tabs" data-tabs id="<%= month.name %>">
+              <li class="tabs-title is-active"><a href="#<%= month.name %>incomes" aria-selected="true">Income</a></li>
+              <li class="tabs-title"><a data-tabs-target="<%= month.name %>bills" href="#<%= month.name %>bills">Bills</a></li>
+              <li class="tabs-title"><a data-tabs-target="<%= month.name %>savings" href="#<%= month.name %>savings">Savings</a></li>
+              <li class="tabs-title"><a data-tabs-target="<%= month.name %>leftover" href="#<%= month.name %>leftover">Spending</a></li>
+            </ul>
+
+
+
+
+            <div class="tabs-content" data-tabs-content="<%= month.name %>">
+              <div class="tabs-panel is-active" id="<%= month.name %>incomes">
+                <%= render 'layouts/incomes', month: month %>
+
+              </div>
+              <div class="tabs-panel" id="<%= month.name %>bills">
+                <%= render 'layouts/bills', month: month %>
+              </div>
+              <div class="tabs-panel" id="<%= month.name %>savings">
+                <%= render 'layouts/savings', month: month %>
+              </div>
+              <div class="tabs-panel" id="<%= month.name %>leftover">
+                <%= render 'layouts/leftovers', month:month %>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  
+</div>

@@ -69,13 +69,13 @@ class BillsController < ApplicationController
   end
 
   def distribute
-    @bill.distribute_across_months
+    @bill.distribute_item_across_months(@bill)
     redirect_to @bill
   end
 
   def add_single_month
     # render plain: params[:bill].inspect
-    @bill.add_month(Month.find(params[:bill][:month_ids]))
+    @bill.add_month_to_item(Month.find(params[:bill][:month_ids]), @bill)
     redirect_to @bill
   end
   

@@ -1,107 +1,121 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Source:</strong>
-  <%= @income.source %>
+<p id="notice">
+  <%= notice %>
 </p>
+<div class="grid-x align-center">
+  <div class="cell small-6" style="text-align: center;">
+    <p>
+      <strong>Source:</strong><br>
+      <%= @income.source %>
+    </p>
 
-<p>
-  <strong>Pay date:</strong>
-  <%= @income.pay_date %>
-</p>
+    <p>
+      <strong>Pay date:</strong><br>
+      <%= @income.pay_date.strftime("%B #{@income.pay_date.day.ordinalize}") %>
+    </p>
 
-<p>
-  <strong>Gross:</strong>
-  <%= '%.2f' % @income.gross_amount %>
-</p>
+    <p>
+      <strong>Gross:</strong><br>
+      <%= '%.2f' % @income.gross_amount %>
+    </p>
 
-<p>
-  <strong>Federal tax:</strong>
-  <%= '%.2f' % @income.federal_tax %>
-</p>
+    <p>
+      <strong>Federal tax:</strong><br>
+      <%= '%.2f' % @income.federal_tax %>
+    </p>
 
-<p>
-  <strong>State tax:</strong>
-  <%= '%.2f' % @income.state_tax %>
-</p>
+    <p>
+      <strong>State tax:</strong><br>
+      <%= '%.2f' % @income.state_tax %>
+    </p>
 
-<p>
-  <strong>Social sec tax:</strong>
-  <%= '%.2f' % @income.social_sec_tax %>
-</p>
+    <p>
+      <strong>Social sec tax:</strong><br>
+      <%= '%.2f' % @income.social_sec_tax %>
+    </p>
 
-<p>
-  <strong>Medicare tax:</strong>
-  <%= '%.2f' % @income.medicare_tax %>
-</p>
+    <p>
+      <strong>Medicare tax:</strong><br>
+      <%= '%.2f' % @income.medicare_tax %>
+    </p>
 
-<p>
-  <strong>Net:</strong>
-  <%= '%.2f' % @income.net_amount %>
-</p>
+    <p>
+      <strong>Net:</strong><br>
+      <%= '%.2f' % @income.net_amount %>
+    </p>
 
-<p>
-  <strong>Attached to Budget:</strong>
-  <%= @income.get_attached_budget_name %>
-</p>
+    <p>
+      <strong>Attached to Budget:</strong><br>
+      <%= link_to "#{@income.annual_budget.name}", annual_budget_path(@income.annual_budget_id), { class: "button", style: "color: white;" } %>
+    </p>
 
-<p>
-  <strong>Attached Months:</strong>
-  <% @income.months.each do |i| %>
-    <%= i.name_as_month_year %>
-  <% end %>
-</p>
-<% if @income.months.length < 12 %>
-<%= form_with(model: @income, local: true, url: { action: 'add_single_month' }) do |form| %>
-  <% if @income.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@income.errors.count, "error") %> prohibited this month from being added:</h2>
+    <p>
+      <strong>Attached Months:</strong><br>
+      <% @income.months.each do |i| %>
+        <%= i.name_as_month_year %>
+          <% end %>
+    </p>
+    <hr>
+    <% if @income.months.length < 12 %>
+      <%= form_with(model: @income, local: true, url: { action: 'add_single_month' }) do |form| %>
+        <% if @income.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(@income.errors.count, "error") %> prohibited this month from being added:</h2>
 
-      <ul>
-        <% @income.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+            <ul>
+              <% @income.errors.full_messages.each do |message| %>
+                <li>
+                  <%= message %>
+                </li>
+                <% end %>
+            </ul>
+          </div>
+          <% end %>
 
-<div class="field">
-  <%= form.label 'Attach to month:' %>
-  <%= form.collection_select(:month_ids, Month.where(annual_budget_id: @income.annual_budget_id) - @income.months, :id, :name_as_month_year) %>
-</div>
+            <div class="field">
+              <%= form.label 'Attach to Month:' %>
+                <%= form.collection_select(:month_ids, Month.where(annual_budget_id: @income.annual_budget_id) - @income.months, :id, :name_as_month_year) %>
+            </div>
 
-  <div class="actions">
-    <%= form.submit %>
+            <div class="actions">
+              <%= form.submit 'Attach' %>
+            </div>
+            <% end %>
+              <% end %>
+
+                <hr>
+                <% if @income.months.length > 0 %>
+                  <%= form_with(model: @income, local:true, url: { action: 'remove_single_month' }) do |form| %>
+                    <% if @income.errors.any? %>
+                      <div id="error_explanation">
+                        <h2>
+                          <%= pluralize(@income.errors.count, "error") %> prohibited this month from being removed:</h2>
+
+                        <ul>
+                          <% @income.errors.full_messages.each do |message| %>
+                            <li>
+                              <%= message %>
+                            </li>
+                            <% end %>
+                        </ul>
+                      </div>
+                      <% end %>
+                        <div class="field">
+                          <%= form.label 'Remove from Month:' %>
+                            <%= form.collection_select(:month_ids, @income.months, :id, :name_as_month_year) %>
+                        </div>
+
+                        <div class="actions">
+                          <%= form.submit 'Remove' %>
+                        </div>
+                        <% end %>
+                          <% end %>
+    <hr>
   </div>
-<% end %>
-<% end %>
 
-
-<% if @income.months.length > 0 %>
-<%= form_with(model: @income, local:true, url: { action: 'remove_single_month' }) do |form| %>
-  <% if @income.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@income.errors.count, "error") %> prohibited this month from being removed:</h2>
-      
-      <ul>
-        <% @income.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class="field">
-  <%= form.label 'Remove from month:' %>
-  <%= form.collection_select(:month_ids, @income.months, :id, :name_as_month_year) %>
-</div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="cell" style="text-align: center;">
+    <%= link_to 'Edit', edit_income_path(@income), { class: "button", style: "color: white;" } %> |
+      <%= link_to 'Clone', clone_income_path(@income), { class: "button", style: "color: white;" } %> |
+        <%= link_to 'Back', incomes_path, { class: "button", style: "color: white;" } %>
   </div>
-<% end %>
-<% end %>
-
-<%= link_to 'Show Budget', annual_budget_path(@income.annual_budget_id) %> |
-<%= link_to 'Edit', edit_income_path(@income) %> |
-<%= link_to 'Clone', clone_income_path(@income) %> |
-<%= link_to 'Back', incomes_path %>
+</div>

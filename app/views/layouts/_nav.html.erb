@@ -1,0 +1,44 @@
+<div class="title-bar" data-responsive-toggle="top-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="top-menu"></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li><%= link_to "Easy Budget", root_path %></li>
+    </ul>
+  </div>
+  <div class="top-bar-right" id="top-menu">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li>
+        <%= link_to "Budgets", annual_budgets_path %>
+        <ul class="menu vertical">
+          <li><%= link_to "Create", new_annual_budget_path %></li>
+          <li><%= link_to "All Budgets", annual_budgets_path %></li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "Incomes", incomes_path %>
+        <ul class="menu vertical">
+          <li><%= link_to "Create", new_income_path %></li>
+          <li><%= link_to "All Incomes", incomes_path %></li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "Bills", bills_path %>
+        <ul class="menu vertical">
+          <li><%= link_to "Create", new_bill_path %></li>
+          <li><%= link_to "All Bills", bills_path %></li>
+        </ul>
+      </li>
+      <li>
+        <%= link_to "Savings", savings_path %>
+        <ul class="menu vertical">
+          <li><%= link_to "Create", new_saving_path %></li>
+          <li><%= link_to "All Savings", savings_path %></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

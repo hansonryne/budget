@@ -68,13 +68,13 @@ class SavingsController < ApplicationController
   end
   
   def distribute
-    @saving.distribute_across_months
+    @saving.distribute_item_across_months(@saving)
     redirect_to @saving
   end
 
   def add_single_month
     # render plain: params[:saving].inspect
-    @saving.add_month(Month.find(params[:saving][:month_ids]))
+    @saving.add_month_to_item(Month.find(params[:saving][:month_ids]), @saving)
     redirect_to @saving
   end
   

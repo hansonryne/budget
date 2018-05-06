@@ -1,3 +1,5 @@
+
+  <div class="cell small-6" style="text-align: center;">
 <%= form_with(model: annual_budget, local: true) do |form| %>
   <% if annual_budget.errors.any? %>
     <div id="error_explanation">
@@ -22,7 +24,8 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Update', { class: "button", style: "color: white;" } %>
   </div>
 
 <% end %>
+</div>

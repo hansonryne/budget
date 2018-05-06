@@ -1,0 +1,22 @@
+<% if month.get_leftovers <= 0 %>
+<h3>
+  No Spending For This Month
+</h3>
+<% else %>
+<div class="table-scroll grid-x align-center">
+<table>
+  <thead>
+    <tr>
+      <th>Total: <%= '%.2f' % month.get_leftovers %> | <%= get_total_percentage(month, 'leftovers') %></th>
+    </tr>
+  <tbody>
+    <tr>
+      <td>Amount Per Week (4 Weeks): <%= '%.2f' % (month.get_leftovers / 4) %></td>
+    </tr>
+    <tr>
+      <td>Amount Per Week (5 Weeks): <%= '%.2f' % (month.get_leftovers / 5) %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<% end %>

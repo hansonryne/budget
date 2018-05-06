@@ -19,6 +19,7 @@ end
     member do
       get 'clone'
       post 'distribute'
+      
       patch 'add_single_month'
       patch 'remove_single_month'
     end
@@ -28,5 +29,5 @@ end
       get 'clone'
     end
   end
-  root 'annual_budgets#index'
+  root 'static#index'
 end

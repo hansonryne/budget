@@ -1,6 +1,10 @@
-<h1>Editing Bill</h1>
-
-<%= render 'form', bill: @bill %>
-
-<%= link_to 'Show', @bill %> |
-<%= link_to 'Back', bills_path %>
+<div class="grid-x align-center">
+  <div class="cell" style="text-align: center;">
+    <h1>Editing Bill</h1>
+  </div>
+  <%= render 'form', bill: @bill %>
+  <div class="cell" style="text-align: center;">
+    <%= link_to 'Show', @bill, { class: "button", style: "color: white;" } %> |
+    <%= link_to 'Back', bills_path, { class: "button", style: "color: white;" } %>
+  </div>
+</div>
