@@ -4,7 +4,7 @@ class Saving < ApplicationRecord
   has_many :attachments, :as => :attachable, dependent: :destroy
   has_many :months, :through => :attachments
   
-  validates :name, :amount, :category, :save_date, presence: true
+  validates :name, :amount, :category, presence: true
 
   CATEGORIES = [ 'Emergency', 'Fun', 'Retirement', 'College', 'Other' ]
   

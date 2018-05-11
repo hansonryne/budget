@@ -21,7 +21,7 @@
   </thead>
 
   <tbody>
-         <% @incomes.order(:use_month, :source).each do |income| %>
+         <% @incomes.order(:pay_date, :source).each do |income| %>
       <tr>
         <td><%= income.source %></td>
         <td><%= income.pay_date %></td>
