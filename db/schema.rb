@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_26_014845) do
+ActiveRecord::Schema.define(version: 2018_05_11_171452) do
 
   create_table "annual_budgets", force: :cascade do |t|
     t.text "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_04_26_014845) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "annual_budget_id"
+    t.integer "month_ids"
     t.index ["annual_budget_id"], name: "index_bills_on_annual_budget_id"
   end
 
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 2018_04_26_014845) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "annual_budget_id"
+    t.integer "spending_amount"
     t.index ["annual_budget_id"], name: "index_months_on_annual_budget_id"
   end
 

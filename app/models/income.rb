@@ -5,7 +5,7 @@ class Income < ApplicationRecord
   has_many :months, :through => :attachments
   
   validates :source, :pay_date, :gross_amount,
-            :federal_tax, :state_tax, :use_month,
+            :federal_tax, :state_tax,
             :social_sec_tax, :medicare_tax, presence: true
 
   before_save :set_net_income

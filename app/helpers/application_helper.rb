@@ -18,6 +18,8 @@ module ApplicationHelper
           '%.2f %%' % (month.savings.sum(&:amount) / month.incomes.sum(&:net_amount) * 100)
         when 'incomes'
           '%.2f %%' % (month.incomes.sum(&:net_amount) / month.incomes.sum(&:net_amount) * 100)
+        when 'spendings'
+          '%.2f %%' % (month.spending_amount / month.incomes.sum(&:net_amount) * 100)
         when 'leftovers'
           '%.2f %%' % (month.get_leftovers / month.incomes.sum(&:net_amount) * 100)
         else

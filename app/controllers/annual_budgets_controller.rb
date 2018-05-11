@@ -27,6 +27,7 @@ class AnnualBudgetsController < ApplicationController
   # POST /annual_budgets.json
   def create
     @annual_budget = AnnualBudget.new(annual_budget_params)
+    @annual_budget.name = params[:annual_budget][:name].capitalize
     # render plain: params[:annual_budget].inspect
 
     respond_to do |format|

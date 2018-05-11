@@ -11,11 +11,9 @@
               <li class="tabs-title is-active"><a href="#<%= month.name %>incomes" aria-selected="true">Income</a></li>
               <li class="tabs-title"><a data-tabs-target="<%= month.name %>bills" href="#<%= month.name %>bills">Bills</a></li>
               <li class="tabs-title"><a data-tabs-target="<%= month.name %>savings" href="#<%= month.name %>savings">Savings</a></li>
-              <li class="tabs-title"><a data-tabs-target="<%= month.name %>leftover" href="#<%= month.name %>leftover">Spending</a></li>
+              <li class="tabs-title"><a data-tabs-target="<%= month.name %>spending" href="#<%= month.name %>leftover">Spending</a></li>
+              <li class="tabs-title"><a data-tabs-target="<%= month.name %>leftover" href="#<%= month.name %>leftover">Leftover</a></li>
             </ul>
-
-
-
 
             <div class="tabs-content" data-tabs-content="<%= month.name %>">
               <div class="tabs-panel is-active" id="<%= month.name %>incomes">
@@ -28,6 +26,9 @@
               <div class="tabs-panel" id="<%= month.name %>savings">
                 <%= render 'layouts/savings', month: month %>
               </div>
+              <div class="tabs-panel" id="<%= month.name %>spending">
+                <%= render 'layouts/spendings', month:month %>
+              </div>
               <div class="tabs-panel" id="<%= month.name %>leftover">
                 <%= render 'layouts/leftovers', month:month %>
               </div>
@@ -37,5 +38,4 @@
       <% end %>
     </ul>
   </div>
-  
 </div>

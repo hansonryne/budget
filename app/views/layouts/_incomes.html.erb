@@ -34,8 +34,8 @@
       <td><%= '%.2f' % month.incomes.sum(&:gross_amount) %></td>
       <td><%= '%.2f' % month.incomes.sum(&:net_amount) %></td>
       <td><%= get_total_percentage(month, 'incomes') %></td>
-      <td><%= link_to "Add", new_income_path %></td>
-      <td colspan="2"><%= link_to "See All", incomes_path %></td>
+      <td><%= link_to 'Add', new_income_path %></td>
+      <td colspan="2"><%= link_to 'See All', incomes_path %></td>
     </tr>
   </tbody>
 </table>
@@ -43,9 +43,9 @@
 <% end %>
 <div class="grid-x align-center grid-margin-x" style="text-align: center;">
   <div class="cell small-3">
-    <%= button_to "Add An Income", new_income_path, {class: "button small"} %>
+    <%= link_to 'Add An Income', new_income_path, {class: "button small", style: "color: white;"} %>
   </div>
   <div class="cell small-3">
-    <%= button_to "See All Incomes", incomes_path, {class: "button small"} %>
+    <%= link_to 'See All Incomes', incomes_path, {class: "button small", style: "color: white;"} %>
   </div>
 </div>

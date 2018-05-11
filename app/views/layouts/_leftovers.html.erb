@@ -1,22 +1,16 @@
-<% if month.get_leftovers <= 0 %>
+<% if month.get_leftovers == 0 %>
 <h3>
-  No Spending For This Month
+  Nothing left this month.
 </h3>
-<% else %>
-<div class="table-scroll grid-x align-center">
-<table>
-  <thead>
-    <tr>
-      <th>Total: <%= '%.2f' % month.get_leftovers %> | <%= get_total_percentage(month, 'leftovers') %></th>
-    </tr>
-  <tbody>
-    <tr>
-      <td>Amount Per Week (4 Weeks): <%= '%.2f' % (month.get_leftovers / 4) %></td>
-    </tr>
-    <tr>
-      <td>Amount Per Week (5 Weeks): <%= '%.2f' % (month.get_leftovers / 5) %></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+<% elsif month.get_leftovers < 0 %>
+  <h3 style="color: red;">
+    You are in the hole $<%= month.get_leftovers.abs %>!!
+  </h3>
+  <% else %>
+  <h3>
+    You have $<%= '%.2f' % month.get_leftovers %> left.
+  </h3>
+  <h5>
+    Maybe you should save it >>>>>  <%= link_to 'Save it', new_saving_path, {class: "button small", style: "color: white;"} %>
+  </h5>
 <% end %>

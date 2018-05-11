@@ -42,7 +42,7 @@ class MonthsController < ApplicationController
   def update
     respond_to do |format|
       if @month.update(month_params)
-        format.html { redirect_to @month, notice: 'Month was successfully updated.' }
+        format.html { redirect_to @month.annual_budget, notice: 'Month was successfully updated.' }
         format.json { render :show, status: :ok, location: @month }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class MonthsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def month_params
-      params.require(:month).permit(:name, :annual_budget_id)
+      params.require(:month).permit(:name, :annual_budget_id, :spending_amount)
     end
 end

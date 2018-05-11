@@ -1,6 +1,12 @@
-<h1>Editing Month</h1>
+<div class="grid-x align-center">
 
+  <div class="cell" style="text-align: center;">
+<h1>Editing <%= @month.name.strftime('%B %y') %></h1>
+  </div>
 <%= render 'form', month: @month %>
 
-<%= link_to 'Show', @month %> |
-<%= link_to 'Back', months_path %>
+    <div class="cell" style="text-align: center;">
+<%= link_to 'Back to Budget', @month.annual_budget, { class: "button", style: "color: white;" } %>
+
+  </div>
+</div>

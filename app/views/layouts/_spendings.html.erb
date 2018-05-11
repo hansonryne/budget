@@ -1,0 +1,19 @@
+  <div class="table-scroll grid-x align-center">
+    <table>
+      <thead>
+      <tr>
+        <th>Total: <%= '%.2f' % month.spending_amount %> | <%= get_total_percentage(month, 'spendings') %></th>
+      </tr>
+      <tbody>
+      <tr>
+        <td>Amount Per Week (4 Weeks): <%= '%.2f' % (month.spending_amount / 4) %></td>
+      </tr>
+      <tr>
+        <td>Amount Per Week (5 Weeks): <%= '%.2f' % (month.spending_amount / 5) %></td>
+      </tr>
+      <tr>
+        <td><%= link_to 'Edit Spending Amount', edit_month_path(month.id), {class: "button small", style: "color: white;"} %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
