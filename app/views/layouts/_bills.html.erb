@@ -15,10 +15,10 @@
     </tr>
   </thead>
   <tbody>
-    <% month.bills.order(:name).each do |bill| %>
+    <% month.bills.order(:withdrawal_date).each do |bill| %>
         <tr>
           <td>
-            <%= bill.name %> <%= bill.id %>
+            <%= bill.name %>
           </td>
           <td>
             <%= bill.withdrawal_date.day %>

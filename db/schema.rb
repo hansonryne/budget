@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2018_05_11_171452) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "annual_budget_id"
-    t.integer "month_ids"
     t.index ["annual_budget_id"], name: "index_bills_on_annual_budget_id"
   end
 
@@ -56,7 +55,6 @@ ActiveRecord::Schema.define(version: 2018_05_11_171452) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "annual_budget_id"
-    t.date "use_month"
     t.index ["annual_budget_id"], name: "index_incomes_on_annual_budget_id"
   end
 

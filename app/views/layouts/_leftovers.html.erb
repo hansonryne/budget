@@ -4,7 +4,7 @@
 </h3>
 <% elsif month.get_leftovers < 0 %>
   <h3 style="color: red;">
-    You are in the hole $<%= month.get_leftovers.abs %>!!
+    You are in the hole $<%= '%.2f' % month.get_leftovers.abs %>!!
   </h3>
   <% else %>
   <h3>
