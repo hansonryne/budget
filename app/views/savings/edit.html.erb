@@ -1,11 +1,11 @@
-<div class="grid-x align-center">
+<div class="grid-x grid-margin-x align-center">
   <div class="cell" style="text-align: center;">
 <h1>Editing Saving</h1>
   </div>
 <%= render 'form', saving: @saving %>
+<%= render 'attachment_form', saving: @saving %>
   <div class="cell" style="text-align: center;">
 
-<%= link_to 'Show', @saving, { class: "button", style: "color: white;" } %> |
 <%= link_to 'Back', savings_path, { class: "button", style: "color: white;" } %>
 </div>
 </div>

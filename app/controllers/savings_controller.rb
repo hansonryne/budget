@@ -28,7 +28,7 @@ class SavingsController < ApplicationController
 
     respond_to do |format|
       if @saving.save
-        format.html { redirect_to @saving, notice: 'Saving was successfully created.' }
+        format.html { redirect_to edit_saving_path(@saving), notice: 'Saving was successfully created.' }
         format.json { render :show, status: :created, location: @saving }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SavingsController < ApplicationController
   def update
     respond_to do |format|
       if @saving.update(saving_params)
-        format.html { redirect_to @saving, notice: 'Saving was successfully updated.' }
+        format.html { redirect_to edit_saving_path(@saving), notice: 'Saving was successfully updated.' }
         format.json { render :show, status: :ok, location: @saving }
       else
         format.html { render :edit }
@@ -69,19 +69,20 @@ class SavingsController < ApplicationController
   
   def distribute
     @saving.distribute_item_across_months(@saving)
-    redirect_to @saving
+    redirect_to edit_saving_path(@saving)
   end
 
   def add_single_month
-    # render plain: params[:saving].inspect
+    params[:saving][:month_ids] = params[:saving][:month_ids].reject(&:empty?)
+    #render plain: params[:saving].inspect
     @saving.add_month_to_item(Month.find(params[:saving][:month_ids]), @saving)
-    redirect_to @saving
+    redirect_to edit_saving_path(@saving)
   end
   
   def remove_single_month
 #     render plain: params[:saving].inspect
     @saving.months.destroy(params[:saving][:month_ids])
-    redirect_to @saving
+    redirect_to edit_saving_path(@saving)
   end
 
   private

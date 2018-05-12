@@ -11,7 +11,7 @@
       <th>Day</th>
       <th>Amount</th>
       <th>Percent</th>
-      <th colspan="3"></th>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -30,9 +30,6 @@
             <%= get_single_percentage(month, bill.amount) %>
           </td>
           <td>
-            <%= link_to 'Show', bill %>
-          </td>
-          <td>
             <%= link_to 'Edit', edit_bill_path(bill) %>
           </td>
           <td>
@@ -42,13 +39,12 @@
         </tr>
         <% end %>
             <tr>
-              <td>TOTAL:</td>
-              <td></td>
-              <td><%= '%.2f' % month.bills.sum(&:amount) %></td>
-              <td><%= get_total_percentage(month, 'bills') %></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <th>TOTAL:</th>
+              <th></th>
+              <th><%= '%.2f' % month.bills.sum(&:amount) %></th>
+              <th><%= get_total_percentage(month, 'bills') %></th>
+	      <th><%= link_to 'Add', new_bill_path %></th>
+	      <th><%= link_to 'See All', bills_path %></th>
             </tr>
   </tbody>
 </table>

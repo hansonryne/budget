@@ -29,7 +29,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       if @bill.save
-        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
+        format.html { redirect_to edit_bill_path(@bill), notice: 'Bill was successfully created.' }
         format.json { render :show, status: :created, location: @bill }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class BillsController < ApplicationController
   def update
     respond_to do |format|
       if @bill.update(bill_params)
-        format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
+        format.html { redirect_to edit_bill_path(@bill), notice: 'Bill was successfully updated.' }
         format.json { render :show, status: :ok, location: @bill }
       else
         format.html { render :edit }
@@ -70,19 +70,20 @@ class BillsController < ApplicationController
 
   def distribute
     @bill.distribute_item_across_months(@bill)
-    redirect_to @bill
+    redirect_to edit_bill_path(@bill)
   end
 
   def add_single_month
     # render plain: params[:bill].inspect
+    params[:bill][:month_ids] = params[:bill][:month_ids].reject(&:empty?)
     @bill.add_month_to_item(Month.find(params[:bill][:month_ids]), @bill)
-    redirect_to @bill
+    redirect_to edit_bill_path(@bill)
   end
   
   def remove_single_month
 #     render plain: params[:bill].inspect
     @bill.months.destroy(params[:bill][:month_ids])
-    redirect_to @bill
+    redirect_to edit_bill_path(@bill)
   end
 
   private

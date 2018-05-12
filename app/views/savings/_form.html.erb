@@ -1,4 +1,4 @@
-  <div class="cell small-2" style="text-align: center;">
+  <div class="cell small-8 large-2" style="text-align: center;">
 
 <%= form_with(model: saving, local: true) do |form| %>
   <% if saving.errors.any? %>
@@ -23,12 +23,12 @@
 
       <div class="field">
         <%= form.label :amount %>
-          <%= form.number_field :amount %>
+	<%= form.number_field :amount, :step => 0.01 %>
       </div>
 
       <div class="field">
         <%= form.label :category %>
-          <%= form.select :category, options_for_select(Saving::CATEGORIES) %>
+          <%= form.select :category, options_for_select(Saving::CATEGORIES, saving.category) %>
       </div>
 
       <div class="field">

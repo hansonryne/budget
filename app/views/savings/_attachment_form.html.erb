@@ -1,0 +1,83 @@
+<div class="cell small-6 large-2"> 
+
+              <% if @saving.months.length < 12 %>
+	                      <%= form_with(model: @saving, local: true, url: { action: 'add_single_month' }) do |form| %>
+	                        <% if @saving.errors.any? %>
+	                          <div id="error_explanation">
+                    <h2><%= pluralize(@saving.errors.count, "error") %> prohibited this Saving from being saved:</h2>
+
+		                              <ul>
+		                                <% @saving.errors.full_messages.each do |message| %>
+			                                          <li><%= message %></li>
+		                                <% end %>
+		                              </ul>
+		                            </div>
+		                          <% end %>
+
+<div class="field">
+	<%= form.label 'Attach to month:' %>
+	<ul style="list-style: none;">
+<%#= form.collection_select(:month_ids, Month.where(annual_budget_id: @saving.annual_budget_id) - @saving.months, :id, :name_as_month_year) %>
+<%= form.collection_check_boxes :month_ids, (Month.where(annual_budget_id: @saving.annual_budget_id) - @saving.months).sort, :id, :name_as_month_year do |b| %>
+	<li>
+	<%= b.check_box %>
+	<%= b.label %>
+	</li>
+<% end %>
+	</ul>
+	
+				           </div>
+
+					<div class="actions">
+					<%= form.submit 'Attach' %>
+					</div>
+			<% end %>
+		<% end %>
+
+
+<hr>
+<p>
+<strong>Attached Months:</strong><br>
+<ul style="list-style: none;">
+	<% @saving.months.sort.each do |m| %>
+		<li>
+	<%= m.name_as_month_year %>
+	</li>
+<% end %>
+</p>
+
+
+<% if @saving.months.length < 12 %>
+<p>OR:</p>
+<%= button_to('Add to all months in attached budget', action: 'distribute') %>
+<% end %>
+
+<hr>
+
+<% if @saving.months.length > 0 %>
+<%= form_with(model: @saving, local:true, url: { action: 'remove_single_month' }) do |form| %>
+<% if @saving.errors.any? %>
+<div id="error_explanation">
+<h2><%= pluralize(@saving.errors.count, "error") %> prohibited this month from being removed:</h2>
+
+<ul>
+<% @saving.errors.full_messages.each do |message| %>
+<li><%= message %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+<div class="field">
+<%= form.label 'Remove from month:' %>
+<%= form.collection_select(:month_ids, @saving.months.sort, :id, :name_as_month_year) %>
+</div>
+
+<div class="actions">
+<%= form.submit 'Remove' %>
+</div>
+<% end %>
+<% end %>
+
+
+</div>
+

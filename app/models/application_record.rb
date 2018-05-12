@@ -5,11 +5,13 @@ class ApplicationRecord < ActiveRecord::Base
     AnnualBudget.find(self.annual_budget_id).name
   end
   
-  def add_month_to_item(month, attachable)
-    if attachable.months.include? month
-      errors[:month_ids] << "Month Already Attached"
+  def add_month_to_item(month_array, attachable)
+    month_array.each do |i|
+    if attachable.months.include? i
+      next
     else
-      attachable.months << month
+      attachable.months << i 
+    end
     end
   end
   

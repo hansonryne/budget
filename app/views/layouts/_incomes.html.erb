@@ -12,7 +12,7 @@
       <th>Gross Pay</th>
       <th>Net Pay</th>
       <th>Percent of Net</th>
-      <th colspan="3">Actions</th>
+      <th colspan="2">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -23,19 +23,18 @@
         <td><%= '%.2f' % income.gross_amount %></td>
         <td><%= '%.2f' % income.net_amount %></td>
         <td><%= get_single_percentage(month, income.net_amount) %></td>
-        <td><%= link_to 'Show', income %></td>
         <td><%= link_to 'Edit', edit_income_path(income) %></td>
         <td><%= link_to 'Delete', income, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
         <% end %>
     <tr>
-      <td>TOTAL:</td>
-      <td></td>
-      <td><%= '%.2f' % month.incomes.sum(&:gross_amount) %></td>
-      <td><%= '%.2f' % month.incomes.sum(&:net_amount) %></td>
-      <td><%= get_total_percentage(month, 'incomes') %></td>
-      <td><%= link_to 'Add', new_income_path %></td>
-      <td colspan="2"><%= link_to 'See All', incomes_path %></td>
+      <th>TOTAL:</th>
+      <th></th>
+      <th><%= '%.2f' % month.incomes.sum(&:gross_amount) %></th>
+      <th><%= '%.2f' % month.incomes.sum(&:net_amount) %></th>
+      <th><%= get_total_percentage(month, 'incomes') %></th>
+      <th><%= link_to 'Add', new_income_path %></th>
+      <th colspan="2"><%= link_to 'See All', incomes_path %></th>
     </tr>
   </tbody>
 </table>

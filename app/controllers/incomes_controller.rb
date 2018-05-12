@@ -29,7 +29,7 @@ class IncomesController < ApplicationController
 
     respond_to do |format|
       if @income.save
-        format.html { redirect_to @income, notice: 'Income was successfully created.' }
+        format.html { redirect_to edit_income_path(@income), notice: 'Income was successfully created.' }
         format.json { render :show, status: :created, location: @income }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class IncomesController < ApplicationController
   def update
     respond_to do |format|
       if @income.update(income_params)
-        format.html { redirect_to @income, notice: 'Income was successfully updated.' }
+        format.html { redirect_to edit_income_path(@income), notice: 'Income was successfully updated.' }
         format.json { render :show, status: :ok, location: @income }
       else
         format.html { render :edit }
@@ -70,14 +70,15 @@ class IncomesController < ApplicationController
 
   def add_single_month
     # render plain: params[:bill].inspect
+    params[:income][:month_ids] = params[:income][:month_ids].reject(&:empty?)
     @income.add_month_to_item(Month.find(params[:income][:month_ids]), @income)
-    redirect_to @income
+    redirect_to edit_income_path(@income)
   end
   
   def remove_single_month
 #     render plain: params[:income].inspect
     @income.months.destroy(params[:income][:month_ids])
-    redirect_to @income
+    redirect_to edit_income_path(@income)
   end
   
   private

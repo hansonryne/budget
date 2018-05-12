@@ -1,0 +1,77 @@
+<div class="cell small-6 large-2"> 
+
+              <% if @income.months.length < 12 %>
+	                      <%= form_with(model: @income, local: true, url: { action: 'add_single_month' }) do |form| %>
+	                        <% if @income.errors.any? %>
+	                          <div id="error_explanation">
+                    <h2><%= pluralize(@income.errors.count, "error") %> prohibited this income from being saved:</h2>
+
+		                              <ul>
+		                                <% @income.errors.full_messages.each do |message| %>
+			                                          <li><%= message %></li>
+		                                <% end %>
+		                              </ul>
+		                            </div>
+		                          <% end %>
+
+<div class="field">
+	<%= form.label 'Attach to month:' %>
+	<ul style="list-style: none;">
+<%= form.collection_check_boxes:month_ids, (Month.where(annual_budget_id: @income.annual_budget_id) - @income.months).sort, :id, :name_as_month_year do |b| %>
+	<li>
+	<%= b.check_box %>
+	<%= b.label %>
+	</li>
+	<% end %>
+	</ul>
+
+</div>
+
+					<div class="actions">
+					<%= form.submit 'Attach' %>
+					</div>
+			<% end %>
+		<% end %>
+
+
+<hr>
+<p>
+<strong>Attached Months:</strong><br>
+<ul style="list-style: none;">
+	<% @income.months.sort.each do |m| %>
+		<li>
+	<%= m.name_as_month_year %>
+	</li>
+<% end %>
+</p>
+
+
+<hr>
+
+<% if @income.months.length > 0 %>
+<%= form_with(model: @income, local:true, url: { action: 'remove_single_month' }) do |form| %>
+<% if @income.errors.any? %>
+<div id="error_explanation">
+<h2><%= pluralize(@income.errors.count, "error") %> prohibited this month from being removed:</h2>
+
+<ul>
+<% @income.errors.full_messages.each do |message| %>
+<li><%= message %></li>
+<% end %>
+</ul>
+</div>
+<% end %>
+<div class="field">
+<%= form.label 'Remove from month:' %>
+<%= form.collection_select(:month_ids, @income.months.sort, :id, :name_as_month_year) %>
+</div>
+
+<div class="actions">
+<%= form.submit 'Remove' %>
+</div>
+<% end %>
+<% end %>
+
+
+</div>
+
